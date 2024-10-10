@@ -1,0 +1,148 @@
+.sg-inspired {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #333;
+  }
+  
+  .sg-main {
+    padding-top: 80px; /* Adjust based on your navbar height */
+  }
+  
+  .sg-hero {
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .sg-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .sg-hero p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .sg-gallery, .sg-about, .sg-exhibitions {
+    margin-bottom: 80px;
+  }
+  
+  .sg-gallery h2, .sg-about h2, .sg-exhibitions h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .sg-grid-item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sg-grid-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .sg-grid-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  .sg-item-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sg-grid-item:hover .sg-item-info {
+    opacity: 1;
+  }
+  
+  .sg-about p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .sg-exhibition-item {
+    text-align: center;
+  }
+  
+  .sg-exhibition-item img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .sg-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sg-button:hover {
+    background-color: #555;
+  }
+  
+  .sg-footer {
+    border-top: 1px solid #eaeaea;
+    padding-top: 40px;
+  }
+  
+  .sg-footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .sg-footer-info h3 {
+    margin-bottom: 10px;
+  }
+  
+  .sg-footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .sg-footer-links a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .sg-copyright {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .sg-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .sg-footer-content {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }

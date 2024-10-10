@@ -1,0 +1,184 @@
+.container-wrapper{
+    width: 100%;
+height: 100%;
+}
+:root {
+    --scroll-opacity: 0;
+  }
+  .home-page-section {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, var(--scroll-opacity)), rgba(0, 0, 0, var(--scroll-opacity))), 
+                url('../img/hero/photoshoot.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow: hidden;
+    z-index: 1; /* Konten berada di atas overlay */
+  }
+  .text-content {
+    width: 50%;
+    z-index: 2; /* Pastikan teks berada di atas overlay */
+  }
+  
+  .section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay hitam semi-transparan */
+    z-index: 0; /* Overlay berada di bawah konten lainnya */
+  }
+  
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Overlay hitam dengan transparansi 40% */
+    z-index: 1; /* Pastikan overlay di atas gambar tapi di bawah teks */
+  }
+  .text-content {
+    
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 48px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .description {
+    font-size: 1.125rem;
+    color: azure;
+  }
+  .read-more-button {
+    margin-top: 16px;
+    padding: 10px 25px;
+    background-color: #fff ;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .read-more-button:hover {
+    background-color: #ff5252;
+  }
+  
+  .author {
+    font-weight: bold;
+  }
+  
+  .image-container {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+  }
+  
+  .image-text-overlay {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Transparan untuk teks */
+    border-radius: 8px;
+    z-index: 3; /* Pastikan teks ini di atas segalanya */
+  }
+  
+  
+  
+  .image-text-overlay h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  
+  .image-text-overlay p {
+    font-size: 1.125rem;
+  }
+  
+  
+  
+.group-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(20px);
+    transition: filter 1s ease-out;
+    z-index: 1;
+  }
+  
+  
+  
+  .group-image.loaded {
+    filter: blur(0);
+  }
+  
+  
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  }
+  
+  .navigation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    padding: 16px;
+  }
+  
+  .navigation ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navigation li {
+    margin: 0 12px;
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .text-content, .image-container {
+      width: 100%;
+    }
+  
+    .image-container {
+      height: 50vh;
+    }
+  
+    .navigation ul {
+      flex-wrap: wrap;
+    }
+  
+    .navigation li {
+      margin: 6px;
+    }
+  }
