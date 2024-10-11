@@ -2,68 +2,68 @@ import React from 'react';
 import '../css/Shots.css';
 
 const Shots = () => {
-  // Mock data for news items
   const newsItems = [
     {
       id: 1,
-      category: 'NEWS',
-      title: 'New Album Release: Rock Giants Return with Explosive Tracks',
+      category: 'FASHION',
+      title: 'The New Elegance',
       image: require('../img/hero/black-people.jpg'),
-      excerpt: 'The wait is over as the legendary rock band drops their highly anticipated album...'
+      link: '#'
     },
     {
       id: 2,
-      category: 'FEATURES',
-      title: 'Behind the Scenes: A Day in the Life of a Touring Musician',
+      category: 'BEAUTY',
+      title: 'Radiant Skin Secrets',
       image: require('../img/hero/black-people.jpg'),
-      excerpt: 'Ever wondered what it s like to live on the road? We follow a rising star...'
+      link: '#'
     },
     {
       id: 3,
-      category: 'REVIEWS',
-      title: 'Concert Review: Electrifying Performance Leaves Crowd in Awe',
+      category: 'LIFESTYLE',
+      title: 'Modern Living Spaces',
       image: require('../img/hero/black-people.jpg'),
-      excerpt: 'Last night s show was a testament to the power of live music...'
+      link: '#'
     },
     {
       id: 4,
-      category: 'INTERVIEWS',
-      title: 'Exclusive: Rising Star Opens Up About Creative Process',
+      category: 'CULTURE',
+      title: 'Art in the Digital Age',
       image: require('../img/hero/black-people.jpg'),
-      excerpt: 'In a candid conversation, the breakout artist discusses inspiration, challenges...'
+      link: '#'
     },
     {
       id: 5,
-      category: 'NEWS',
-      title: 'Major Festival Announces Lineup: Surprises and Fan Favorites',
+      category: 'FOOD',
+      title: 'Culinary Adventures',
       image: require('../img/hero/black-people.jpg'),
-      excerpt: 'The music world is buzzing with excitement as the lineup for this years...'
+      link: '#'
     },
     {
       id: 6,
-      category: 'FEATURES',
-      title: 'The Evolution of Rock: From Classics to Modern Twists',
+      category: 'TRAVEL',
+      title: 'Exploring Hidden Gems',
       image: require('../img/hero/black-people.jpg'),
-      excerpt: 'We take a deep dive into how rock music has transformed over the decades...'
+      link: '#'
     },
   ];
 
   return (
-    <div className="shots">
-      <h1 className="shots-title">WHAT'S HAPPENING</h1>
+    <section className="shots">
+      <h2 className="shots-title">SHOTS</h2>
       <div className="news-grid">
-        {newsItems.map((item, index) => (
-          <div key={item.id} className={`news-item ${index === 0 ? 'featured' : ''}`}>
-            <img src={item.image} alt={item.title} />
+        {newsItems.map((item) => (
+          <a href={item.link} key={item.id} className="news-item">
+            <div className="image-container">
+              <img src={item.image} alt={item.title} />
+            </div>
             <div className="news-content">
               <span className="news-category">{item.category}</span>
-              <h2 className="news-title">{item.title}</h2>
-              <p className="news-excerpt">{item.excerpt}</p>
+              <h3 className="news-title">{item.title}</h3>
             </div>
-          </div>
+          </a>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

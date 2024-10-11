@@ -5,6 +5,8 @@ header.navbar {
     right: 0;
     z-index: 1001;
     transition: background-color 0.3s ease;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+
   }
   
   .navbar-container {
