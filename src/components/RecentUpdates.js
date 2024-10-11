@@ -1,214 +1,119 @@
-import React, { useState, useRef } from 'react';
-import { ChevronRight, Play, Pause } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronRight } from 'lucide-react';
 import '../css/RecentUpdates.css';
 
 const RecentUpdates = () => {
-  const [activeTab, setActiveTab] = useState('articles');
-  const [playingVideo, setPlayingVideo] = useState(null);
-  const videoRefs = useRef({});
-  
-  const handleVideoPlay = (index) => {
-    if (playingVideo !== null && playingVideo !== index) {
-      videoRefs.current[playingVideo].pause();
-    }
-    if (playingVideo === index) {
-      videoRefs.current[index].pause();
-      setPlayingVideo(null);
-    } else {
-      videoRefs.current[index].play();
-      setPlayingVideo(index);
-    }
-  };
-  const articles = [
-    {
-      title: "Zanele Muholi at Norval Foundation",
-      date: "16.05.2023",
-      excerpt: "Zanele Muholi's solo exhibition Kwanele opens at Norval Foundation on 2 June 2023.",
-      image: require('../img/hero/article.jpg'),
-      category: "News"
-    },
-    {
-      title: "Rich Mnisi in Cape Town",
-      date: "03.05.2023",
-      excerpt: "Rich Mnisi presents new furniture designs at Southern Guild's Cape Town gallery.",
-      image: require('../img/hero/article.jpg'),
-      category: "Exhibition"
-    },
-    {
-      title: "Andile Dyalvane: iThongo",
-      date: "20.04.2023",
-      excerpt: "Andile Dyalvane's solo exhibition iThongo opens in New York.",
-      image: require('../img/hero/article.jpg'),
-      category: "Exhibition"
-    },
-    {
-        title: "Zanele Muholi at Norval Foundation",
-        date: "16.05.2023",
-        excerpt: "Zanele Muholi's solo exhibition Kwanele opens at Norval Foundation on 2 June 2023.",
-        image: require('../img/hero/article.jpg'),
-        category: "News"
-      },
-      {
-        title: "Zanele Muholi at Norval Foundation",
-        date: "16.05.2023",
-        excerpt: "Zanele Muholi's solo exhibition Kwanele opens at Norval Foundation on 2 June 2023.",
-        image: require('../img/hero/article.jpg'),
-        category: "News"
-      },
-      {
-        title: "Zanele Muholi at Norval Foundation",
-        date: "16.05.2023",
-        excerpt: "Zanele Muholi's solo exhibition Kwanele opens at Norval Foundation on 2 June 2023.",
-        image: require('../img/hero/article.jpg'),
-        category: "News"
-      },
-  ];
+  const [activeTab, setActiveTab] = useState('all');
 
-  const shots = [
-    { image: require('../img/hero/img_3.jpg'), title: "Bronze Sculpture by Atang Tshikare" },
-    { image: require('../img/hero/img_3.jpg'), title: "Ceramic Vessel by Zizipho Poswa" },
-    { image: require('../img/hero/img_3.jpg'), title: "Woven Tapestry by Portia Mvubu" },
-    { image: require('../img/hero/img_3.jpg'), title: "Glass Installation by Lukhanyo Mdingi" },
-    { image: require('../img/hero/img_3.jpg'), title: "Furniture Piece by Dokter and Misses" },
-    { image: require('../img/hero/img_3.jpg'), title: "Lighting Design by Conrad Hicks" }
-  ];
-
-  const videos = [
+  const content = [
     {
-      title: "Rich Mnisi | Nyoka",
-      duration: "1:08",
-      thumbnail: require('../video/video-satu.mp4'),
-      description: "Rich Mnisi introduces Nyoka, a new collection of collectible furniture."
+      type: 'article',
+      title: "The Evolution of Urban Design in Melbourne",
+      excerpt: "Exploring the changing face of Melbourne's cityscape and its impact on community living.",
+      image: require('../img/hero/music.jpg'),
+      category: "Urban Planning",
+      author: "Jane Smith",
+      date: "16 May 2023"
     },
     {
-      title: "Porky Hefer | Molecules",
-      duration: "1:22",
-      thumbnail: require('../video/video-satu.mp4'),
-      description: "Porky Hefer discusses his Molecules collection, inspired by chemical compounds."
+      type: 'video',
+      title: "Sustainable Architecture: Building for the Future",
+      excerpt: "A look into innovative sustainable building practices shaping our cities.",
+      image: require('../img/hero/music.jpg'),
+      category: "Architecture",
+      author: "John Doe",
+      date: "14 May 2023"
     },
     {
-      title: "Zizipho Poswa | Umthwalo",
-      duration: "1:15",
-      thumbnail: require('../video/video-satu.mp4'),
-      description: "Zizipho Poswa talks about her Umthwalo series of ceramic sculptures."
+      type: 'article',
+      title: "The Rise of Community Gardens in Inner City Suburbs",
+      excerpt: "How urban farming is transforming unused spaces and bringing communities together.",
+      image: require('../img/hero/music.jpg'),
+      category: "Community",
+      author: "Sarah Johnson",
+      date: "12 May 2023"
     },
     {
-      title: "Andile Dyalvane | iThongo",
-      duration: "2:05",
-      thumbnail: require('../video/video-satu.mp4'),
-      description: "Andile Dyalvane explains the inspiration behind his iThongo collection."
+      type: 'article',
+      title: "Preserving Heritage: Balancing Progress and History",
+      excerpt: "The challenges and triumphs of maintaining historical architecture in a growing city.",
+      image: require('../img/hero/music.jpg'),
+      category: "Heritage",
+      author: "Michael Brown",
+      date: "10 May 2023"
     },
     {
-      title: "Justine Mahoney | Mage",
-      duration: "1:47",
-      thumbnail: require('../video/video-satu.mp4'),
-      description: "Justine Mahoney introduces her Mage series of sculptural works."
+      type: 'video',
+      title: "Street Art: The Voice of Urban Culture",
+      excerpt: "Exploring the vibrant street art scene and its role in urban expression.",
+      image: require('../img/hero/music.jpg'),
+      category: "Culture",
+      author: "Emily Chen",
+      date: "8 May 2023"
     },
     {
-      title: "Atang Tshikare | Oa Mpona",
-      duration: "1:30",
-      thumbnail: require('../video/video-satu.mp4'),
-      description: "Atang Tshikare discusses his Oa Mpona collection of functional art pieces."
+      type: 'article',
+      title: "The Future of Public Transportation",
+      excerpt: "Innovative solutions for efficient and sustainable city transit systems.",
+      image: require('../img/hero/music.jpg'),
+      category: "Infrastructure",
+      author: "David Wilson",
+      date: "6 May 2023"
     }
   ];
 
-  const renderArticles = () => (
-    <div className="content-grid articles-grid">
-      {articles.map((article, index) => (
-        <div key={index} className="content-card article-card">
-          <img src={article.image} alt={article.title} className="card-image" />
-          <div className="card-content">
-            <span className="category">{article.category}</span>
-            <h3>{article.title}</h3>
-            <p className="date">{article.date}</p>
-            <p className="excerpt">{article.excerpt}</p>
-            <a href="#" className="read-more">
-              Read more <ChevronRight size={16} />
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
-  const renderShots = () => (
-    <div className="content-grid shots-grid">
-      {shots.map((shot, index) => (
-        <div key={index} className="content-card shot-card">
-          <img src={shot.image} alt={shot.title} className="card-image" />
-          <div className="card-content">
-            <h3>{shot.title}</h3>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
-  const renderVideos = () => (
-    <div className="content-grid videos-grid">
-      {videos.map((video, index) => (
-        <div key={index} className="content-card video-card">
-          <div className="video-thumbnail">
-            <video
-              ref={el => videoRefs.current[index] = el}
-              src={video.thumbnail}
-              poster={`${video.thumbnail}#t=0.1`}
-              preload="metadata"
-            />
-            <div className="play-button" onClick={() => handleVideoPlay(index)}>
-              {playingVideo === index ? <Pause size={24} /> : <Play size={24} />}
-            </div>
-          </div>
-          <div className="card-content">
-            <h3>{video.title}</h3>
-            <p className="duration">{video.duration}</p>
-            <p className="description">{video.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'articles':
-        return renderArticles();
-      case 'shots':
-        return renderShots();
-      case 'videos':
-        return renderVideos();
-      default:
-        return null;
-    }
-  };
+  const filteredContent = activeTab === 'all' 
+    ? content 
+    : content.filter(item => item.type === activeTab);
 
   return (
     <section className="recent-updates">
       <div className="section-header">
-        <h2>Recent Updates</h2>
+        <h2>Recent</h2>
         <div className="tabs">
           <button 
-            className={`tab ${activeTab === 'articles' ? 'active' : ''}`} 
-            onClick={() => setActiveTab('articles')}
+            className={`tab ${activeTab === 'all' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('all')}
+          >
+            All
+          </button>
+          <button 
+            className={`tab ${activeTab === 'article' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('article')}
           >
             Articles
           </button>
           <button 
-            className={`tab ${activeTab === 'shots' ? 'active' : ''}`} 
-            onClick={() => setActiveTab('shots')}
-          >
-            Shots
-          </button>
-          <button 
-            className={`tab ${activeTab === 'videos' ? 'active' : ''}`} 
-            onClick={() => setActiveTab('videos')}
+            className={`tab ${activeTab === 'video' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('video')}
           >
             Videos
           </button>
         </div>
       </div>
-      <div className="content-area">
-        {renderContent()}
+      <div className="content-grid">
+        {filteredContent.map((item, index) => (
+          <div key={index} className={`content-card ${item.type}-card`}>
+            <div className="card-image-container">
+              <img src={item.image} alt={item.title} className="card-image" />
+              <div className="image-overlay">
+                <span className="category">{item.category}</span>
+                {item.type === 'video' && <span className="video-indicator">Video</span>}
+              </div>
+            </div>
+            <div className="card-content">
+              <h3>{item.title}</h3>
+              <p className="excerpt">{item.excerpt}</p>
+              <div className="card-meta">
+                <span className="author">{item.author}</span>
+                <span className="date">{item.date}</span>
+              </div>
+              <a href="#" className="read-more">
+                Read more <ChevronRight size={16} />
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
