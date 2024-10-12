@@ -6,19 +6,25 @@ import Story from './Story';
 import Shots from './Shots';
 import VideoSection from './VideoSection';
 import HomePage from './HomePage';
+import Brand from './Brand';
+import TalesComponent from './TalesComponent';
+import FootageComponent from'./FootageComponent';
 
 const Home = () => {
 
   return (
     <div className="home">
         <HomePage/>
-      <RecentUpdates />
+        <TalesComponent/>
+        <FootageComponent/>
+        <Brand/>
+      {/* <RecentUpdates /> */}
 <section>
 {/* <SocialMediaInfo /> */}
 
 </section>
       <Story />
-      <Shots />
+      {/* <Shots /> */}
       <VideoSection />
     </div>
   );

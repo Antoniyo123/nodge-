@@ -1,25 +1,46 @@
 .navbar {
-    margin: 0 auto ;
     width: 100%;
-    max-width: 1200px;
+    height: 150px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #fff;
+    justify-content: center; /* Center the content container */
+    background-color: rgba(0, 0, 255, 0.764);
     position: relative;
+    position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  }
+  .navbar-visible {
+    transform: translateY(0);
   }
   
-  .navbar-brand {
-    font-size: 1.5rem;
+  .navbar-hidden {
+    transform: translateY(-100%);
+  }
+  
+.navbar-container{
+    width: 100%;
+    max-width: 1280px; /* Adjust this to fit your preferred content width */
+    display: flex;
+    justify-content: space-between; /* Logo to the left, hamburger to the right */
+    /* Vertically center both items */
+    padding: 0 1rem;
+  
+ } 
+ .navbar .navbar-brand {
+    font-size: 3rem;
     font-weight: bold;
+    color: white;
   }
   
   .hamburger {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 3rem;
     cursor: pointer;
+    color: white;
   }
   
   .menu-overlay {
@@ -48,23 +69,19 @@
   
   .grid-menu {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    /* gap: 1rem; */
     padding: 1rem;
-    max-width: 90%;
-    max-height: 90%;
-    overflow-y: auto;
-  }
-  
-  @media (min-width: 768px) {
-    .grid-menu {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 3 / 2;
   }
   
   .menu-item {
+    border: 1px solid #fff;
+
     position: relative;
-    aspect-ratio: 1;
     overflow: hidden;
   }
   
@@ -72,15 +89,48 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
   }
   
-  .menu-item span {
+  .menu-item-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.782);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .menu-item-text {
     color: white;
-    padding: 0.5rem;
+    font-size: 3rem;
+    font-weight: bold;
     text-align: center;
+    transition: transform 0.3s ease-out, font-size 0.3s ease-in;
+  }
+  
+  .menu-item:hover .menu-item-overlay {
+    opacity: 0.8;
+  }
+  
+  .menu-item:hover .menu-item-text {
+    transform: scale(1.1);
+    font-size: 3.7rem;
+  }
+  
+  .menu-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .grid-menu {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      aspect-ratio: 2 / 3;
+    }
   }

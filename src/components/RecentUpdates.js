@@ -96,7 +96,7 @@ const RecentUpdates = () => {
           <div key={index} className={`content-card ${item.type}-card`}>
             <div className="card-image-container">
               <img src={item.image} alt={item.title} className="card-image" />
-              <div className="image-overlay">
+              <div className="image-overlay-card">
                 <span className="category">{item.category}</span>
                 {item.type === 'video' && <span className="video-indicator">Video</span>}
               </div>

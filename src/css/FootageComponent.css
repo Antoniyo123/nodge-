@@ -1,0 +1,121 @@
+.footage-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #959191;
+    padding: 20px;
+    padding-top: 60px;
+  }
+  
+  .footage-title {
+    color: rgb(12, 12, 12);
+    font-size: 6rem;
+    margin-bottom: 20px;
+  }
+  
+  .footage-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #959191;
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+    /* border-radius: 8px; */
+    overflow: hidden;
+    width: 800px;
+    max-width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .footage-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .footage-image {
+    position: relative;
+    width: 100%;
+    height: 600px;
+  }
+  
+  .film-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  .footage-text {
+    font-size: 36px;
+    font-weight: bold;
+    /* margin: 0; */
+  }
+  
+  .film-by {
+    font-size: 24px;
+    /* margin: 10px 0 0; */
+  }
+  
+  .footage-description {
+    padding-top: 20px;
+    /* padding: 20px; */
+    font-size: 16px;
+    color: rgb(1, 1, 1);
+    padding-bottom: 40px;
+  }
+  
+  @media (max-width: 840px) {
+    .footage-card {
+      width: 95%;
+    }
+    
+    .footage-image {
+      height: 400px;
+    }
+    
+    .footage-text {
+      font-size: 28px;
+    }
+    
+    .film-by {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footage-title {
+      font-size: 36px;
+    }
+    
+    .footage-image {
+      height: 300px;
+    }
+    
+    .footage-text {
+      font-size: 24px;
+    }
+    
+    .film-by {
+      font-size: 18px;
+    }
+    
+    .footage-description {
+      font-size: 14px;
+    }
+  }

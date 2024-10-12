@@ -75,19 +75,21 @@
 .content-card:hover .card-image {
   transform: scale(1.05);
 }
-
-.image-overlay {
+.image-overlay-card {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 1rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  opacity: 0.8; /* 80% opacity */
+
 }
+
 
 .category {
   font-size: 0.8rem;
