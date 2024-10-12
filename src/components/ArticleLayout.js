@@ -81,15 +81,25 @@ const ArticleLayout = () => {
       </main>
 
       <footer className="footer">
-        <div className="footer-content">
-          <p>&copy; 2024 Monochrome Events. All rights reserved.</p>
-          <div className="social-links">
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Twitter">TW</a>
-            <a href="#" aria-label="Instagram">IG</a>
-          </div>
-        </div>
-      </footer>
+  <div className="footer-top">
+    <nav className="footer-nav">
+      <a href="/">About Us</a>
+      <a href="/">Contact</a>
+      <a href="/">Privacy Policy</a>
+      <a href="/">Terms of Service</a>
+    </nav>
+  </div>
+
+  <div className="footer-bottom">
+    <p>© 2024 Monochrome Events. All rights reserved.</p>
+    <div className="social-links">
+      <a href="/">FB</a>
+      <a href="/">TW</a>
+      <a href="/">IG</a>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 };

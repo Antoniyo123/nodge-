@@ -15,13 +15,13 @@ const Story = () => {
       title: "Embracing Art in Everyday Life",
       date: "July 24, 2023",
       excerpt: "Discovering how art influences our daily experiences and perceptions.",
-      image: require('../img/hero/photoshoot.jpg')
+      image: require('../img/hero/music.jpg')
     },
     {
       title: "A Journey Through Color",
       date: "August 15, 2023",
       excerpt: "Unraveling the psychology and impact of color in various cultures.",
-      image: require('../img/hero/photoshoot.jpg')
+      image: require('../img/hero/article.jpg')
     }
   ];
 
