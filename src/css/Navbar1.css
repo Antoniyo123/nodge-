@@ -73,9 +73,10 @@
     grid-template-rows: repeat(2, 1fr);
     /* gap: 1rem; */
     padding: 1rem;
-    width: 90%;
-    max-width: 1200px;
-    aspect-ratio: 3 / 2;
+    width: 100%;
+    /* max-width: 1200px; */
+    aspect-ratio: 4 / 2;
+    margin-top: 56rem;
   }
   
   .menu-item {
