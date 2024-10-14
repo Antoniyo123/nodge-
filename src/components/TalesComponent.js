@@ -6,6 +6,7 @@ const TalesComponent = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,10 +23,24 @@ const TalesComponent = () => {
       observer.observe(componentRef.current);
     }
 
+    const handleScroll = () => {
+      if (componentRef.current) {
+        const rect = componentRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const relativePosition = (windowHeight - rect.top) / (windowHeight + rect.height);
+        const clampedPosition = Math.max(0, Math.min(1, relativePosition));
+        setScrollPosition(clampedPosition);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Call once for initialization
+
     return () => {
       if (componentRef.current) {
         observer.unobserve(componentRef.current);
       }
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -34,6 +49,17 @@ const TalesComponent = () => {
       ref={componentRef} 
       className={`tales-container ${isVisible ? 'visible' : ''}`}
     >
+<div 
+        className={`story-text-overlay ${isVisible ? 'visible' : ''}`}
+        style={{
+          transform: `translate(-50%, calc(-50% - ${scrollPosition * 50}%))`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      >
+        <span>S</span>
+        <img src={require('../img/hero/NODGE+.png')} alt="T" className="rotating-t" />
+        <span>ORY</span>
+      </div>
       <div 
         className="tales-left"
         onMouseEnter={() => setIsLeftHovered(true)}
