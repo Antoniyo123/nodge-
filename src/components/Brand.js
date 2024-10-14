@@ -11,7 +11,7 @@ const ExactLayout = () => {
     [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
   ];
 
-  const plusImage = require('../img/hero/NODGE +.png'); // Pastikan path ini benar
+  const plusImage = require('../img/hero/NODGE+.png'); // Pastikan path ini benar
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -44,10 +44,10 @@ const NavBar = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'} ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
         <div className="navbar-brand">
-          <img src={require('../img/hero/NODGE LOGO.png')} alt="NODGE +" />
+          <img src={require('../img/hero/NODGE LOGO.png')} alt="NODGE+" />
         </div>
         <button className="hamburger" onClick={toggleMenu}>
-          <img src={require('../img/hero/NODGE +.png')} alt="Menu" />
+          <img src={require('../img/hero/NODGE+.png')} alt="Menu" />
         </button>
         {isMenuOpen && (
           <div className="menu-overlay">

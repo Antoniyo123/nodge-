@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
-        <a href="/" className="navbar-logo">NODGE +</a>
+        <a href="/" className="navbar-logo">NODGE+</a>
         <nav className="navbar-content">
           <div className={`navbar-menu ${isMenuOpen ? 'open' : ''}`}>
             <a href="#artists" className="navbar-link">Artists</a>

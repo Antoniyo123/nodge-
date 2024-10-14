@@ -59,7 +59,7 @@ const Shots = () => {
         <h2 className="shots-title">
           <span className="sho">SHO</span>
           <span className="rotating-t">
-            <img src={require('../img/hero/NODGE +.png')} alt="Rotating +" />
+            <img src={require('../img/hero/NODGE+.png')} alt="Rotating +" />
           </span>
           <span className="s">S</span>
         </h2>
