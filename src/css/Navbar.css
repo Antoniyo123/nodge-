@@ -1,13 +1,4 @@
-header.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-    transition: background-color 0.3s ease;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
 
-  }
   
   .navbar-container {
     margin:0 auto;

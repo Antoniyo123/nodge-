@@ -1,68 +1,86 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Shots.css';
 
 const Shots = () => {
-  const newsItems = [
-    {
-      id: 1,
-      category: 'FASHION',
-      title: 'The New Elegance',
-      image: require('../img/hero/black-people.jpg'),
-      link: '#'
-    },
-    {
-      id: 2,
-      category: 'BEAUTY',
-      title: 'Radiant Skin Secrets',
-      image: require('../img/hero/black-people.jpg'),
-      link: '#'
-    },
-    {
-      id: 3,
-      category: 'LIFESTYLE',
-      title: 'Modern Living Spaces',
-      image: require('../img/hero/black-people.jpg'),
-      link: '#'
-    },
-    {
-      id: 4,
-      category: 'CULTURE',
-      title: 'Art in the Digital Age',
-      image: require('../img/hero/black-people.jpg'),
-      link: '#'
-    },
-    {
-      id: 5,
-      category: 'FOOD',
-      title: 'Culinary Adventures',
-      image: require('../img/hero/black-people.jpg'),
-      link: '#'
-    },
-    {
-      id: 6,
-      category: 'TRAVEL',
-      title: 'Exploring Hidden Gems',
-      image: require('../img/hero/black-people.jpg'),
-      link: '#'
-    },
+  const allPhotos = [
+    { id: 1, image: require('../img/shots/consert.jpg'), alt: 'Elegant portrait' },
+    { id: 2, image: require('../img/shots/drink.jpg'), alt: 'Stylish fashion' },
+    { id: 3, image: require('../img/shots/street.jpg'), alt: 'Minimalist interior' },
+    { id: 4, image: require('../img/shots/peoplelanyard.jpg'), alt: 'Urban landscape' },
+    { id: 5, image: require('../img/shots/consert.jpg'), alt: 'Abstract art' },
+    { id: 6, image: require('../img/shots/consert.jpg'), alt: 'Nature close-up' },
+    { id: 7, image: require('../img/shots/consert.jpg'), alt: 'Portrait' },
+    { id: 8, image: require('../img/shots/consert.jpg'), alt: 'Landscape' },
+    { id: 9, image: require('../img/shots/consert.jpg'), alt: 'Street art' },
+    { id: 10, image: require('../img/shots/consert.jpg'), alt: 'Architecture' },
+    { id: 11, image: require('../img/shots/consert.jpg'), alt: 'Food photography' },
+    { id: 12, image: require('../img/shots/consert.jpg'), alt: 'Wildlife' },
   ];
+
+  const [visiblePhotos, setVisiblePhotos] = useState(allPhotos.slice(0, 6));
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadMorePhotos = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const currentLength = visiblePhotos.length;
+      const nextPhotos = allPhotos.slice(currentLength, currentLength + 3);
+      setVisiblePhotos([...visiblePhotos, ...nextPhotos]);
+      setIsLoading(false);
+    }, 1000); // Simulating network delay
+  };
+
+  useEffect(() => {
+    // This effect will run after the component mounts and re-render
+    const resizeGridItems = () => {
+      const grid = document.querySelector('.photo-grid');
+      const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+      const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+
+      const items = grid.querySelectorAll('.photo-item');
+      items.forEach(item => {
+        const image = item.querySelector('img');
+        const rowSpan = Math.ceil((image.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    };
+
+    resizeGridItems();
+    window.addEventListener('resize', resizeGridItems);
+
+    return () => {
+      window.removeEventListener('resize', resizeGridItems);
+    };
+  }, [visiblePhotos]);
 
   return (
     <section className="shots">
-      <h2 className="shots-title">SHOTS</h2>
-      <div className="news-grid">
-        {newsItems.map((item) => (
-          <a href={item.link} key={item.id} className="news-item">
-            <div className="image-container">
-              <img src={item.image} alt={item.title} />
-            </div>
-            <div className="news-content">
-              <span className="news-category">{item.category}</span>
-              <h3 className="news-title">{item.title}</h3>
-            </div>
-          </a>
+      <div className="shots-header">
+        <h2 className="shots-title">
+          <span className="sho">SHO</span>
+          <span className="rotating-t">
+            <img src={require('../img/hero/NODGE +.png')} alt="Rotating +" />
+          </span>
+          <span className="s">S</span>
+        </h2>
+        <button className="view-more-btn">View More Shots</button>
+      </div>
+      <div className="photo-grid">
+        {visiblePhotos.map((photo) => (
+          <div key={photo.id} className="photo-item">
+            <img src={photo.image} alt={photo.alt} />
+          </div>
         ))}
       </div>
+      {visiblePhotos.length < allPhotos.length && (
+        <button 
+          className={`load-more-btn ${isLoading ? 'loading' : ''}`} 
+          onClick={loadMorePhotos}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Loading...' : 'Load More'}
+        </button>
+      )}
     </section>
   );
 };

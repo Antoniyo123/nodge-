@@ -12,6 +12,7 @@ const categories = [
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -20,35 +21,33 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    const controlNavbar = () => {
-      if (typeof window !== 'undefined') {
-        if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
-          setIsVisible(false);
-        } else { // if scroll up show the navbar
-          setIsVisible(true);
-        }
-
-        // remember current page location to use in the next move
-        setLastScrollY(window.scrollY);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
       }
+
+      setIsScrolled(currentScrollY > 50);
+      setLastScrollY(currentScrollY);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-      // cleanup function
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [lastScrollY]);
 
   return (
-    <nav className={`navbar ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
-      <div className="navbar-container">
-        <div className="navbar-brand">NODGE +</div>
+    <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'} ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
+        <div className="navbar-brand">
+          <img src={require('../img/hero/NODGE LOGO.png')} alt="NODGE +" />
+        </div>
         <button className="hamburger" onClick={toggleMenu}>
-          ☰
+          <img src={require('../img/hero/NODGE +.png')} alt="Menu" />
         </button>
         {isMenuOpen && (
           <div className="menu-overlay">
@@ -67,7 +66,7 @@ const NavBar = () => {
             </div>
           </div>
         )}
-      </div>
+
     </nav>
   );
 };

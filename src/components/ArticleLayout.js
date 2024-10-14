@@ -30,10 +30,31 @@ const ArticleLayout = () => {
 
   return (
     <div className="events-layout">
-      <header className="header">
-        <h1 className="animate-on-scroll">Upcoming Events</h1>
-        <p className="animate-on-scroll">Curated experiences for the discerning mind</p>
-      </header>
+<header className="header">
+  {/* Running Images */}
+  <div className="running-images">
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 1" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 2" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 3" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 4" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 5" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 1" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 2" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 3" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 4" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 5" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 1" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 2" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 3" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 4" />
+    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 5" />
+  </div>
+
+  <h1 className="animate-on-scroll">Upcoming Events</h1>
+  <p className="animate-on-scroll">Curated experiences for the discerning mind</p>
+</header>
+
+
 
       <main className="main-content">
         <section className="featured-events">
@@ -81,25 +102,24 @@ const ArticleLayout = () => {
       </main>
 
       <footer className="footer">
-  <div className="footer-top">
-    <nav className="footer-nav">
-      <a href="/">About Us</a>
-      <a href="/">Contact</a>
-      <a href="/">Privacy Policy</a>
-      <a href="/">Terms of Service</a>
-    </nav>
-  </div>
+        <div className="footer-top">
+          <nav className="footer-nav">
+            <a href="/">About Us</a>
+            <a href="/">Contact</a>
+            <a href="/">Privacy Policy</a>
+            <a href="/">Terms of Service</a>
+          </nav>
+        </div>
 
-  <div className="footer-bottom">
-    <p>© 2024 Monochrome Events. All rights reserved.</p>
-    <div className="social-links">
-      <a href="/">FB</a>
-      <a href="/">TW</a>
-      <a href="/">IG</a>
-    </div>
-  </div>
-</footer>
-
+        <div className="footer-bottom">
+          <p>© 2024 Monochrome Events. All rights reserved.</p>
+          <div className="social-links">
+            <a href="/">FB</a>
+            <a href="/">TW</a>
+            <a href="/">IG</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

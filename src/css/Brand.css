@@ -1,74 +1,84 @@
 .layout-container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .column {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .column-left {
-    flex: 1;
-    width: 100%;
-  }
-  
-  .column-center {
-    flex: 1.5;
-  }
-  
-  .column-right {
-    flex: 1;
-  }
-  
-  .column img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-    z-index: 1; /* Ensure the image is under the overlay */
-  }
-  
-  .text-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark transparent overlay */
-    z-index: 2; /* Overlay above the image */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .text-overlay h2 {
-    font-size: 6rem;
-    font-weight: bold;
-    color: white; /* Ensure text is visible on dark overlay */
-    margin: 0;
-    text-transform: lowercase;
-  }
-  
+  display: flex;
+  height: 100vh;
+}
 
-  
-  /* Ganti '+' dengan 't' */
-  .text-overlay h2::before {
-    content: attr(data-text);
-  }
-  
-  .column-left .text-overlay h2::before {
-    content: "sho+s";
-  }
-  
-  .column-center .text-overlay h2::before {
-    content: "+ales";
-  }
-  
-  .column-right .text-overlay h2::before {
-    content: "foo+age";
-  }
+.column {
+  position: relative; /* Untuk memastikan overlay berada di atas gambar */
+  flex: 1;
+  overflow: hidden;
+}
+.column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Efek zoom saat hover */
+}
+
+
+.column:hover img {
+  transform: scale(1.05);
+}
+
+.text-overlay {
+  position: absolute;
+  color: white;
+  padding: 20px;
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.bottom-left, .bottom-center, .bottom-right {
+  bottom: 20px;
+}
+
+.bottom-left {
+  left: 20px;
+}
+
+.bottom-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-right {
+  right: 20px;
+}
+.h2 h2 {
+  font-size: 6rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+ .bottom-center h2{
+  font-size: 4rem;
+}
+.text-overlay h2{
+  font-size: 4rem;
+}
+.bottom-right h2{
+  font-size: 5rem;
+}
+.plus-icon img{
+  width: 80px;
+  height: 80px;
+  margin: 0 5px;
+}
+
+.view-more-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background-color: white;
+  color: black;
+}

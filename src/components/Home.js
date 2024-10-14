@@ -16,16 +16,11 @@ const Home = () => {
     <div className="home">
         <HomePage/>
         <TalesComponent/>
-        <FootageComponent/>
+        {/* <FootageComponent/> */}
         <Brand/>
-      {/* <RecentUpdates /> */}
-<section>
-{/* <SocialMediaInfo /> */}
-
-</section>
-      <Story />
-      {/* <Shots /> */}
-      <VideoSection />
+      {/* <Story /> */}
+      <Shots />
+      {/* <VideoSection /> */}
     </div>
   );
 };

@@ -3,11 +3,15 @@ import '../css/Brand.css';
 
 const ExactLayout = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [hoveredColumn, setHoveredColumn] = useState(null);
+
   const images = [
     [require('../img/hero/article.jpg'), require('../img/hero/old.jpg'), require('../img/hero/article.jpg')],
     [require('../img/hero/black-people.jpg'), require('../img/hero/music.jpg'), require('../img/hero/article.jpg')],
     [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
   ];
+
+  const plusImage = require('../img/hero/NODGE +.png'); // Pastikan path ini benar
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,26 +21,39 @@ const ExactLayout = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const renderColumn = (index, position, title) => (
+    <div 
+      className={`column column-${position}`}
+      onMouseEnter={() => setHoveredColumn(index)}
+      onMouseLeave={() => setHoveredColumn(null)}
+    >
+      <img src={images[currentImageIndex][index]} alt={title} />
+      <div className={`text-overlay ${position === 'left' ? 'top-left' : 'bottom-' + position}`}>
+      <h2>
+        {title.split('+').map((part, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && (
+              <span className="plus-icon">
+                <img src={plusImage} alt="+" />
+              </span>
+            )}
+            {part}
+          </React.Fragment>
+        ))}
+      </h2>
+
+        {hoveredColumn === index && (
+          <button className="view-more-btn">View More</button>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <div className="layout-container">
-      <div className="column column-left">
-        <img src={images[currentImageIndex][0]} alt="Shots" />
-        <div className="text-overlay top-left">
-          <h2></h2>
-        </div>
-      </div>
-      <div className="column column-center">
-        <img src={images[currentImageIndex][1]} alt="Tales" />
-        <div className="text-overlay bottom-left">
-          <h2></h2>
-        </div>
-      </div>
-      <div className="column column-right">
-        <img src={images[currentImageIndex][2]} alt="Footage" />
-        <div className="text-overlay bottom-right">
-          <h2></h2>
-        </div>
-      </div>
+      {renderColumn(0, 'left', 'foo+age')}
+      {renderColumn(1, 'center', '+ones')}
+      {renderColumn(2, 'right', 'fron+page')}
     </div>
   );
 };
