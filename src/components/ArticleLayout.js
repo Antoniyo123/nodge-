@@ -30,66 +30,40 @@ const ArticleLayout = () => {
 
   return (
     <div className="events-layout">
-<header className="header">
-  {/* Running Images */}
-  <div className="running-images">
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 1" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 2" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 3" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 4" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 5" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 1" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 2" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 3" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 4" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 5" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 1" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 2" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 3" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 4" />
-    <img src={require('../img/hero/NODGE LOGO.png')} alt="Image 5" />
-  </div>
-
-  <h1 className="animate-on-scroll">Upcoming Events</h1>
-  <p className="animate-on-scroll">Curated experiences for the discerning mind</p>
-</header>
-
-
+      <header className="header">
+        <div className="running-images">
+          {[...Array(15)].map((_, index) => (
+            <img key={index} src={require('../img/hero/NODGE LOGO.png')} alt={`Logo ${index + 1}`} />
+          ))}
+        </div>
+        <h1 className="animate-on-scroll">Upcoming Events</h1>
+      </header>
 
       <main className="main-content">
         <section className="featured-events">
-          <h2 className="animate-on-scroll">Featured Events</h2>
           <div className="events-grid">
             {events.map((event) => (
               <div key={event.id} className="event-card animate-on-scroll">
-                <div className="event-image" style={{ backgroundImage: `url(${event.image})` }}></div>
-                <div className="event-info">
-                  <h3>{event.title}</h3>
-                  <p className="event-detail">
-                    <Calendar className="icon" />
-                    {event.date}
-                  </p>
-                  <p className="event-detail">
-                    <MapPin className="icon" />
-                    {event.location}
-                  </p>
-                  <p className="event-detail">
-                    <Clock className="icon" />
-                    {event.time}
-                  </p>
+                <div className="event-image" style={{ backgroundImage: `url(${event.image})` }}>
+                  <div className="event-overlay">
+                    <h3>{event.title}</h3>
+                    <p className="event-detail">
+                      <Calendar className="icon" />
+                      {event.date}
+                    </p>
+                    <p className="event-detail">
+                      <MapPin className="icon" />
+                      {event.location}
+                    </p>
+                    <p className="event-detail">
+                      <Clock className="icon" />
+                      {event.time}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        </section>
-
-        <section className="about-events animate-on-scroll">
-          <h2>About Our Events</h2>
-          <p>
-            We curate exceptional experiences that challenge perspectives and inspire creativity. 
-            Join us in exploring the depth and nuance of contemporary culture through our carefully 
-            selected events.
-          </p>
         </section>
 
         <section className="newsletter animate-on-scroll">
@@ -102,23 +76,7 @@ const ArticleLayout = () => {
       </main>
 
       <footer className="footer">
-        {/* <div className="footer-top">
-          <nav className="footer-nav">
-            <a href="/">About Us</a>
-            <a href="/">Contact</a>
-            <a href="/">Privacy Policy</a>
-            <a href="/">Terms of Service</a>
-          </nav>
-        </div> */}
-
-        <div className="footer-bottom">
-          <p>© 2024 PT Cipta Ruang Kreatif. All rights reserved.</p>
-          {/* <div className="social-links">
-            <a href="/">FB</a>
-            <a href="/">TW</a>
-            <a href="/">IG</a>
-          </div> */}
-        </div>
+        <p>© 2024 PT Cipta Ruang Kreatif. All rights reserved.</p>
       </footer>
     </div>
   );
