@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../css/HomePage.css';
 import blackPeopleImg from '../img/hero/black-people.jpg';
 import photoshootImg from '../img/hero/photoshoot.jpg';
@@ -13,7 +13,8 @@ const HomePage = () => {
       title: 'IYAS LAWRENCE',
       subtitle: '"MAKE IT"',
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      getToKnow: 'GET TO KNOW IYAS LAWRENCE'
+      getToKnow: 'GET TO KNOW IYAS LAWRENCE',
+      link: '/article/iyas-lawrence'
     },
     {
       groupPhoto: articleImg,
@@ -21,7 +22,8 @@ const HomePage = () => {
       title: 'NEW TITLE',
       subtitle: '"NEW SUBTITLE"',
       description: 'This is a new description for the second slide. You can add more content here.',
-      getToKnow: 'DISCOVER MORE ABOUT NEW TITLE'
+      getToKnow: 'DISCOVER MORE ABOUT NEW TITLE',
+      link: '/article/new-title'
     },
     // Tambahkan slide lainnya sesuai kebutuhan
   ];
@@ -33,61 +35,89 @@ const HomePage = () => {
   const [isFading, setIsFading] = useState(false);
   const homePageRef = useRef(null);
   const [fadeDirection, setFadeDirection] = useState('');
+  const [isHoveringClickable, setIsHoveringClickable] = useState(false);
 
+  const handleMouseMove = useCallback((e) => {
+    if (homePageRef.current && homePageRef.current.contains(e.target)) {
+      const rect = homePageRef.current.getBoundingClientRect();
+      setCursorPosition({ 
+        x: e.clientX - rect.left, 
+        y: e.clientY - rect.top 
+      });
+      
+      // Check if hovering over clickable content
+      const isOverClickable = e.target.closest('.clickable-content') !== null;
+      setIsHoveringClickable(isOverClickable);
+      
+      if (!isOverClickable) {
+        setCursorText(e.clientX < window.innerWidth / 2 ? 'prev' : 'next');
+      } else {
+        setCursorText('');
+      }
+      setIsHovering(true);
+    } else {
+      setIsHovering(false);
+      setIsHoveringClickable(false);
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+    setIsHoveringClickable(false);
+  }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (homePageRef.current && homePageRef.current.contains(e.target)) {
-        const rect = homePageRef.current.getBoundingClientRect();
-        setCursorPosition({ 
-          x: e.clientX - rect.left, 
-          y: e.clientY - rect.top 
-        });
-        setCursorText(e.clientX < window.innerWidth / 2 ? 'prev' : 'next');
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
-    };
-
-    const handleMouseLeave = () => {
-      setIsHovering(false);
-    };
-
     document.addEventListener('mousemove', handleMouseMove);
-    if (homePageRef.current) {
-      homePageRef.current.addEventListener('mouseleave', handleMouseLeave);
+    const currentHomePageRef = homePageRef.current;
+    
+    if (currentHomePageRef) {
+      currentHomePageRef.addEventListener('mouseleave', handleMouseLeave);
     }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      if (homePageRef.current) {
-        homePageRef.current.removeEventListener('mouseleave', handleMouseLeave);
+      if (currentHomePageRef) {
+        currentHomePageRef.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, []);
+  }, [handleMouseMove, handleMouseLeave]);
 
-  const handleClick = () => {
+  const handleSlideChange = (direction) => {
     setIsFading(true);
-    setFadeDirection(cursorText); // Set fade direction based on cursor position
+    setFadeDirection(direction);
     setTimeout(() => {
-      if (cursorText === 'next') {
+      if (direction === 'next') {
         setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
       } else {
         setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
       }
       setIsFading(false);
       setFadeDirection('');
-    }, 900); // Increased to 500ms to match the new transition duration
+    }, 900);
+  };
+
+  const handleBackgroundClick = (e) => {
+    if (!isHoveringClickable) {
+      const clickX = e.clientX;
+      const direction = clickX < window.innerWidth / 2 ? 'prev' : 'next';
+      handleSlideChange(direction);
+    }
+  };
+
+  const handleContentClick = (link) => {
+    console.log(`Navigating to: ${link}`);
+    // Here you would typically use your navigation logic
+    // For example, if you're using react-router-dom:
+    // history.push(link);
   };
 
   const currentSlideData = slides[currentSlide];
 
   return (
-<div className="home-page-container">
-<div 
+    <div className="home-page-container">
+      <div 
         className={`home-page ${isFading ? 'fading' : ''} ${fadeDirection}`} 
-        onClick={handleClick} 
+        onClick={handleBackgroundClick} 
         ref={homePageRef}
       >
         <div className="left-section">
@@ -95,7 +125,10 @@ const HomePage = () => {
             <img src={currentSlideData.groupPhoto} alt="Group of women" />
             <div className="overlay-home"></div>
           </div>
-          <div className="text-content-home">
+          <div 
+            className="clickable-content text-content-home"
+            onClick={() => handleContentClick(currentSlideData.link)}
+          >
             <h1>{currentSlideData.title}</h1>
             <h2>{currentSlideData.subtitle}</h2>
             <p>{currentSlideData.description}</p>
@@ -105,7 +138,10 @@ const HomePage = () => {
           <div className="profile-photo">
             <img src={currentSlideData.profilePhoto} alt="Profile" />
             <div className="comb-overlay"></div>
-            <div className="get-to-know">
+            <div 
+              className="clickable-content get-to-know"
+              onClick={() => handleContentClick(currentSlideData.link)}
+            >
               <h3>{currentSlideData.getToKnow}</h3>
               <div className="blue-square"></div>
             </div>
@@ -113,7 +149,7 @@ const HomePage = () => {
         </div>
         {isHovering && (
           <div 
-            className="custom-cursor"
+            className={`custom-cursor ${isHoveringClickable ? 'clickable' : ''}`}
             style={{ 
               left: `${cursorPosition.x}px`, 
               top: `${cursorPosition.y}px`

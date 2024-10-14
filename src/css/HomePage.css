@@ -73,6 +73,16 @@
 .custom-cursor:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
+.custom-cursor.clickable {
+  background: none;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+.clickable-content {
+  cursor: pointer;
+}
 .left-section {
   flex: 2;
   position: relative;
