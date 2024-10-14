@@ -43,7 +43,6 @@ const NavBar = () => {
   }, [lastScrollY]);
 
   return (
-    <div className='navbar-container'>
       <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'} ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
         <div className="navbar-brand">
           <img src={require('../img/hero/NODGE LOGO.png')} alt="NODGE+" />
@@ -69,7 +68,7 @@ const NavBar = () => {
           </div>
         )}
       </nav>
-    </div>
+   
   );
 };
 

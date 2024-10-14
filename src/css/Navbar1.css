@@ -1,7 +1,7 @@
 
 .navbar {
   width: 100%;
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
     position: fixed;
     top: 0;
@@ -10,11 +10,10 @@
     z-index: 1000;
   
   transition: background-color 0.3s ease-in, transform 0.1s ease-out;
-  z-index: 1000;
+
 }
 .navbar-container {
   position: relative;
-width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 0.8rem;
@@ -57,20 +56,18 @@ width: 100%;
   }
     
   .menu-overlay {
-    width: 100%;
-    max-width: 1280px;
+    /* width: 100%; */
+    /* max-width: 1280px; */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* background-color: rgba(0, 0, 0, 0.9); */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
     transition: opacity 3s ease-in, visibility 0.5s ease;
   
   }
@@ -78,12 +75,13 @@ width: 100%;
   .menu-overlay.menu-open {
     opacity: 1;
     visibility: visible;
+    height: 100vh;
   }
   
 
   .close-button {
     position: absolute;
-    top: 1rem;
+    top: 0;
     right: 1rem;
     background: none;
     border: none;
@@ -99,7 +97,7 @@ width: 100%;
     padding: 1rem;
     width: 100%;
     aspect-ratio: 4 / 2;
-    margin-top: 45rem;
+    margin-top: 8.4rem;
   }
   
   .menu-item {
