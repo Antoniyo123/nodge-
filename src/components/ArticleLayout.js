@@ -102,22 +102,22 @@ const ArticleLayout = () => {
       </main>
 
       <footer className="footer">
-        <div className="footer-top">
+        {/* <div className="footer-top">
           <nav className="footer-nav">
             <a href="/">About Us</a>
             <a href="/">Contact</a>
             <a href="/">Privacy Policy</a>
             <a href="/">Terms of Service</a>
           </nav>
-        </div>
+        </div> */}
 
         <div className="footer-bottom">
-          <p>© 2024 Monochrome Events. All rights reserved.</p>
-          <div className="social-links">
+          <p>© 2024 PT Cipta Ruang Kreatif. All rights reserved.</p>
+          {/* <div className="social-links">
             <a href="/">FB</a>
             <a href="/">TW</a>
             <a href="/">IG</a>
-          </div>
+          </div> */}
         </div>
       </footer>
     </div>

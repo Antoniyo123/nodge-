@@ -18,6 +18,7 @@ const NavBar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    
   };
 
   useEffect(() => {
@@ -42,7 +43,8 @@ const NavBar = () => {
   }, [lastScrollY]);
 
   return (
-    <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'} ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
+    <div className='navbar-container'>
+      <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'} ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}>
         <div className="navbar-brand">
           <img src={require('../img/hero/NODGE LOGO.png')} alt="NODGE+" />
         </div>
@@ -50,13 +52,13 @@ const NavBar = () => {
           <img src={require('../img/hero/NODGE+.png')} alt="Menu" />
         </button>
         {isMenuOpen && (
-          <div className="menu-overlay">
+          <div className={`menu-overlay ${isMenuOpen ? 'menu-open' : ''}`}>
             <button className="close-button" onClick={toggleMenu}>
               &times;
             </button>
             <div className="grid-menu">
-              {categories.map((category) => (
-                <div key={category.name} className="menu-item">
+              {categories.map((category, index) => (
+                <div key={category.name} className={`menu-item ${isMenuOpen ? 'menu-item-visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
                   <img src={category.image} alt={category.name} />
                   <div className="menu-item-overlay">
                     <span className="menu-item-text">{category.name}</span>
@@ -66,8 +68,8 @@ const NavBar = () => {
             </div>
           </div>
         )}
-
-    </nav>
+      </nav>
+    </div>
   );
 };
 

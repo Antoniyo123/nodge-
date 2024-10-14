@@ -25,25 +25,20 @@
   color: white;
   padding: 20px;
 }
-
+/* Footage */
 .top-left {
   top: 20px;
-  left: 20px;
+  left: 7rem;
 }
-
-.bottom-left, .bottom-center, .bottom-right {
+/* Frontpage */
+.bottom-right {
   bottom: 20px;
 }
-
-.bottom-left {
-  left: 20px;
-}
-
+/* Tones */
 .bottom-center {
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 20rem;
+  left: 28%;
 }
-
 .bottom-right {
   right: 20px;
 }
@@ -52,10 +47,12 @@
   margin: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
  .bottom-center h2{
   font-size: 4rem;
 }
+
 .text-overlay h2{
   font-size: 4rem;
 }
@@ -67,6 +64,15 @@
   height: 80px;
   margin: 0 5px;
 }
+/* h2 .view-more-btn {
+  margin-bottom: 10rem;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+} */
 
 .view-more-btn {
   margin-top: 10px;
@@ -75,7 +81,7 @@
   border: 2px solid white;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease-out, color 0.3s ease-in;
 }
 
 .view-more-btn:hover {

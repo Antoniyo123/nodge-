@@ -30,7 +30,10 @@ const HomePage = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [cursorText, setCursorText] = useState('next');
   const [isHovering, setIsHovering] = useState(false);
+  const [isFading, setIsFading] = useState(false);
   const homePageRef = useRef(null);
+  const [fadeDirection, setFadeDirection] = useState('');
+
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -65,49 +68,61 @@ const HomePage = () => {
   }, []);
 
   const handleClick = () => {
-    if (cursorText === 'next') {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    } else {
-      setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
-    }
+    setIsFading(true);
+    setFadeDirection(cursorText); // Set fade direction based on cursor position
+    setTimeout(() => {
+      if (cursorText === 'next') {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+      } else {
+        setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
+      }
+      setIsFading(false);
+      setFadeDirection('');
+    }, 900); // Increased to 500ms to match the new transition duration
   };
 
   const currentSlideData = slides[currentSlide];
 
   return (
-    <div className="home-page" onClick={handleClick} ref={homePageRef}>
-      <div className="left-section">
-        <div className="group-photo">
-          <img src={currentSlideData.groupPhoto} alt="Group of women" />
-          <div className="overlay-home"></div>
-        </div>
-        <div className="text-content-home">
-          <h1>{currentSlideData.title}</h1>
-          <h2>{currentSlideData.subtitle}</h2>
-          <p>{currentSlideData.description}</p>
-        </div>
-      </div>
-      <div className="right-section">
-        <div className="profile-photo">
-          <img src={currentSlideData.profilePhoto} alt="Profile" />
-          <div className="comb-overlay"></div>
-          <div className="get-to-know">
-            <h3>{currentSlideData.getToKnow}</h3>
-            <div className="blue-square"></div>
+<div className="home-page-container">
+<div 
+        className={`home-page ${isFading ? 'fading' : ''} ${fadeDirection}`} 
+        onClick={handleClick} 
+        ref={homePageRef}
+      >
+        <div className="left-section">
+          <div className="group-photo">
+            <img src={currentSlideData.groupPhoto} alt="Group of women" />
+            <div className="overlay-home"></div>
+          </div>
+          <div className="text-content-home">
+            <h1>{currentSlideData.title}</h1>
+            <h2>{currentSlideData.subtitle}</h2>
+            <p>{currentSlideData.description}</p>
           </div>
         </div>
-      </div>
-      {isHovering && (
-        <div 
-          className="custom-cursor"
-          style={{ 
-            left: `${cursorPosition.x}px`, 
-            top: `${cursorPosition.y}px`
-          }}
-        >
-          {cursorText}
+        <div className="right-section">
+          <div className="profile-photo">
+            <img src={currentSlideData.profilePhoto} alt="Profile" />
+            <div className="comb-overlay"></div>
+            <div className="get-to-know">
+              <h3>{currentSlideData.getToKnow}</h3>
+              <div className="blue-square"></div>
+            </div>
+          </div>
         </div>
-      )}
+        {isHovering && (
+          <div 
+            className="custom-cursor"
+            style={{ 
+              left: `${cursorPosition.x}px`, 
+              top: `${cursorPosition.y}px`
+            }}
+          >
+            {cursorText}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

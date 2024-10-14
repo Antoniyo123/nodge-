@@ -1,5 +1,6 @@
 
 .navbar {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
     position: fixed;
@@ -11,6 +12,13 @@
   transition: background-color 0.3s ease-in, transform 0.1s ease-out;
   z-index: 1000;
 }
+.navbar-container {
+  position: relative;
+width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.8rem;
+  }
 .navbar-transparent {
   background-color: transparent;
   box-shadow: none;
@@ -31,17 +39,7 @@
   .navbar-hidden {
     transform: translateY(-100%);
   }
-  .navbar-container {
-  position: relative;
-
-    width: 100%;
-    height: 180px;
-    /* max-width: 1280px; */
-    display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
-    padding: 0 0.8rem;
-  }
+  
   .hamburger {
     background: none;
     border: none;
@@ -59,18 +57,30 @@
   }
     
   .menu-overlay {
+    width: 100%;
+    max-width: 1280px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    /* background-color: rgba(0, 0, 0, 0.9); */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 3s ease-in, visibility 0.5s ease;
+  
   }
   
+  .menu-overlay.menu-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+
   .close-button {
     position: absolute;
     top: 1rem;
@@ -78,7 +88,7 @@
     background: none;
     border: none;
     color: white;
-    font-size: 2rem;
+    font-size: 7rem;
     cursor: pointer;
   }
   
@@ -89,24 +99,31 @@
     padding: 1rem;
     width: 100%;
     aspect-ratio: 4 / 2;
-    margin-top: 56rem;
+    margin-top: 45rem;
   }
   
   .menu-item {
     border: 1px solid #fff;
     position: relative;
     overflow: hidden;
-  }
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
   
+  }
+  .menu-item-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .menu-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+ 
   }
   
-  /* .menu-overlay {
-    position: fixed;
+  .menu-item-overlay {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -116,10 +133,14 @@
     justify-content: center;
     align-items: center;
     z-index: 1001;
-  } */
+      font-family: "Fjalla One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    
+    
+  }
   
   .menu-item-text {
-
     color: white;
     font-size: 3rem;
     font-weight: bold;

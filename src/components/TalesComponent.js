@@ -52,7 +52,7 @@ const TalesComponent = () => {
 <div 
         className={`story-text-overlay ${isVisible ? 'visible' : ''}`}
         style={{
-          transform: `translate(-50%, calc(-50% - ${scrollPosition * 50}%))`,
+          transform: `translate(-50%, calc(-50% - ${scrollPosition * 500}%))`,
           transition: 'transform 0.1s ease-out'
         }}
       >
