@@ -24,24 +24,20 @@ const Shots = () => {
     setIsLoading(true);
     setTimeout(() => {
       const currentLength = visiblePhotos.length;
-      const nextPhotos = allPhotos.slice(currentLength, currentLength + 3);
+      const nextPhotos = allPhotos.slice(currentLength, currentLength + 6);
       setVisiblePhotos([...visiblePhotos, ...nextPhotos]);
       setIsLoading(false);
     }, 1000); // Simulating network delay
   };
 
   useEffect(() => {
-    // This effect will run after the component mounts and re-render
     const resizeGridItems = () => {
       const grid = document.querySelector('.photo-grid');
-      const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-      const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-
       const items = grid.querySelectorAll('.photo-item');
       items.forEach(item => {
         const image = item.querySelector('img');
-        const rowSpan = Math.ceil((image.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-        item.style.gridRowEnd = `span ${rowSpan}`;
+        image.style.width = '100%';
+        image.style.height = 'auto';
       });
     };
 
@@ -66,13 +62,12 @@ const Shots = () => {
         <button className="view-more-btn">View More Shots</button>
       </div>
       <div className="photo-grid">
-        {visiblePhotos.map((photo) => (
-          <div key={photo.id} className="photo-item">
+        {visiblePhotos.map((photo, index) => (
+          <div key={photo.id} className={`photo-item ${index % 6 < 3 ? 'top-row' : 'bottom-row'}`}>
             <img src={photo.image} alt={photo.alt} />
           </div>
         ))}
-      </div>
-      {visiblePhotos.length < allPhotos.length && (
+              {visiblePhotos.length < allPhotos.length && (
         <button 
           className={`load-more-btn ${isLoading ? 'loading' : ''}`} 
           onClick={loadMorePhotos}
@@ -81,6 +76,8 @@ const Shots = () => {
           {isLoading ? 'Loading...' : 'Load More'}
         </button>
       )}
+      </div>
+
     </section>
   );
 };
