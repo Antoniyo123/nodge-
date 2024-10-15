@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/Brand.css';
 
 const ExactLayout = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [hoveredColumn, setHoveredColumn] = useState(null);
+  const navigate = useNavigate();
 
   const images = [
     [require('../img/hero/article.jpg'), require('../img/hero/old.jpg'), require('../img/hero/article.jpg')],
@@ -11,7 +13,7 @@ const ExactLayout = () => {
     [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
   ];
 
-  const plusImage = require('../img/hero/NODGE+.png'); // Pastikan path ini benar
+  const plusImage = require('../img/hero/NODGE+.png');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,7 +23,11 @@ const ExactLayout = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const renderColumn = (index, position, title) => (
+  const handleViewMore = (page) => {
+    navigate(`/${page}`);
+  };
+
+  const renderColumn = (index, position, title, page) => (
     <div 
       className={`column column-${position}`}
       onMouseEnter={() => setHoveredColumn(index)}
@@ -29,21 +35,20 @@ const ExactLayout = () => {
     >
       <img src={images[currentImageIndex][index]} alt={title} />
       <div className={`text-overlay ${position === 'left' ? 'top-left' : 'bottom-' + position}`}>
-      <h2>
-        {title.split('+').map((part, i) => (
-          <React.Fragment key={i}>
-            {i > 0 && (
-              <span className="plus-icon">
-                <img src={plusImage} alt="+" />
-              </span>
-            )}
-            {part}
-          </React.Fragment>
-        ))}
-      </h2>
-
+        <h2>
+          {title.split('+').map((part, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && (
+                <span className="plus-icon">
+                  <img src={plusImage} alt="+" />
+                </span>
+              )}
+              {part}
+            </React.Fragment>
+          ))}
+        </h2>
         {hoveredColumn === index && (
-          <button className="view-more-btn">View More</button>
+          <button className="view-more-btn" onClick={() => handleViewMore(page)}>View More</button>
         )}
       </div>
     </div>
@@ -51,9 +56,9 @@ const ExactLayout = () => {
 
   return (
     <div className="layout-container">
-      {renderColumn(0, 'left', 'foo+age')}
-      {renderColumn(1, 'center', '+ones')}
-      {renderColumn(2, 'right', 'fron+page')}
+      {renderColumn(0, 'left', 'foo+age', 'footage')}
+      {renderColumn(1, 'center', '+ones', 'tones')}
+      {renderColumn(2, 'right', 'fron+page', 'frontpage')}
     </div>
   );
 };

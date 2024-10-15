@@ -1,0 +1,81 @@
+/* Story.css */
+.story-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .story-page h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+  
+  .story-page h2 {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-bottom: 1rem;
+  }
+  
+  .story-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .story-page p {
+    margin-bottom: 1rem;
+  }
+  
+  .full-content {
+    margin-top: 2rem;
+  }
+  
+  .full-content p {
+    text-indent: 1.5em;
+  }
+  
+  @media (max-width: 768px) {
+    .story-page {
+      padding: 1rem;
+    }
+  
+    .story-page h1 {
+      font-size: 2rem;
+    }
+  
+    .story-page h2 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Animasi fade-in untuk konten */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .story-page {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  /* Styling untuk link kembali */
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-link:hover {
+    background-color: #0056b3;
+  }

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/TalesComponent.css';
 
 const TalesComponent = () => {
@@ -7,6 +8,7 @@ const TalesComponent = () => {
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,12 +46,16 @@ const TalesComponent = () => {
     };
   }, []);
 
+  const handleViewMore = (section) => {
+    navigate('/StoryPage', { state: { section } });
+  };
+
   return (
     <div 
       ref={componentRef} 
       className={`tales-container ${isVisible ? 'visible' : ''}`}
     >
-<div 
+      <div 
         className={`story-text-overlay ${isVisible ? 'visible' : ''}`}
         style={{
           transform: `translate(-50%, calc(-50% - ${scrollPosition * 500}%))`,
@@ -73,7 +79,7 @@ const TalesComponent = () => {
             Discover the beauty of our first tale, where moments of truth unfold.
           </p>
           {isLeftHovered && (
-            <button className="view-more-btn">View More</button>
+            <button className="view-more-btn" onClick={() => handleViewMore('left')}>View More</button>
           )}
         </div>
       </div>
@@ -90,7 +96,7 @@ const TalesComponent = () => {
             Explore our collection of captivating stories that reveal divine truths through everyday moments.
           </p>
           {isRightHovered && (
-            <button className="view-more-btn">View More</button>
+            <button className="view-more-btn" onClick={() => handleViewMore('right')}>View More</button>
           )}
         </div>
       </div>

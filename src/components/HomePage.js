@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import '../css/HomePage.css';
+import '../css/Transition.css';
 import blackPeopleImg from '../img/hero/black-people.jpg';
 import photoshootImg from '../img/hero/photoshoot.jpg';
 import articleImg from '../img/hero/article.jpg';
 import oldImg from '../img/hero/old.jpg';
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const slides = [
     {
       groupPhoto: blackPeopleImg,
@@ -27,7 +31,7 @@ const HomePage = () => {
     },
     // Tambahkan slide lainnya sesuai kebutuhan
   ];
-
+  const [isExiting, setIsExiting] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [cursorText, setCursorText] = useState('next');
@@ -104,17 +108,24 @@ const HomePage = () => {
     }
   };
 
-  const handleContentClick = (link) => {
-    console.log(`Navigating to: ${link}`);
-    // Here you would typically use your navigation logic
-    // For example, if you're using react-router-dom:
-    // history.push(link);
+  const handleContentClick = (slideData) => {
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate('/frontpage', { state: { article: slideData } });
+    }, 500); // Adjust this timing to match your transition duration
   };
+
 
   const currentSlideData = slides[currentSlide];
 
   return (
-    <div className="home-page-container">
+    <CSSTransition
+      in={!isExiting}
+      timeout={500}
+      classNames="page"
+      unmountOnExit
+    >
+<div className="home-page-container">
       <div 
         className={`home-page ${isFading ? 'fading' : ''} ${fadeDirection}`} 
         onClick={handleBackgroundClick} 
@@ -127,7 +138,7 @@ const HomePage = () => {
           </div>
           <div 
             className="clickable-content text-content-home"
-            onClick={() => handleContentClick(currentSlideData.link)}
+            onClick={() => handleContentClick(currentSlideData)}
           >
             <h1>{currentSlideData.title}</h1>
             <h2>{currentSlideData.subtitle}</h2>
@@ -140,7 +151,7 @@ const HomePage = () => {
             <div className="comb-overlay"></div>
             <div 
               className="clickable-content get-to-know"
-              onClick={() => handleContentClick(currentSlideData.link)}
+              onClick={() => handleContentClick(currentSlideData)}
             >
               <h3>{currentSlideData.getToKnow}</h3>
               <div className="blue-square"></div>
@@ -160,6 +171,8 @@ const HomePage = () => {
         )}
       </div>
     </div>
+    </CSSTransition>
+
   );
 };
 

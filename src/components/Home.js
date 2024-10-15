@@ -16,11 +16,8 @@ const Home = () => {
     <div className="home">
         <HomePage/>
         <TalesComponent/>
-        {/* <FootageComponent/> */}
         <Brand/>
-      {/* <Story /> */}
       <Shots />
-      {/* <VideoSection /> */}
     </div>
   );
 };

@@ -1,31 +1,20 @@
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
-import '../css/FootageComponent.css';
+import { Link } from 'react-router-dom';
+import '../css/PageStyles.css';
 
-const FootageComponent = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
+const Footage = () => {
   return (
-    <div className="footage-container" ref={ref}>
-      <h1 className="footage-title">FOO+AGE</h1>
-      <div className={`footage-card ${inView ? 'visible' : ''}`}>
-        <div className="footage-image">
-          <img src={require('../img/hero/old.jpg')} alt="Film scene" className="film-image" />
-          <div className="image-overlay">
-            <p className="footage-text">foo+age</p>
-            <p className="film-by">A FILM BY</p>
-          </div>
-        </div>
-        <div className="footage-description">
-          <p>The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. ill likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'componentRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
-          </p>
-        </div>
-      </div>
+    <div className="page-container">
+      <h1>Footage</h1>
+      <img src={require('../img/hero/article.jpg')} alt="Footage" className="page-image" />
+      <p>
+        Welcome to our Footage page. Here, we showcase our collection of captivating visual narratives.
+        From raw, unedited clips to polished productions, our footage captures the essence of moments,
+        events, and stories that matter.
+      </p>
+      <Link to="/" className="back-link">Back to Home</Link>
     </div>
   );
 };
 
-export default FootageComponent;
+export default Footage;

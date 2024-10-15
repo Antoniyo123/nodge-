@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/Shots.css';
 
 const Shots = () => {
-  const allPhotos = [
+  const navigate = useNavigate();
+  const previewPhotos = [
     { id: 1, image: require('../img/shots/consert.jpg'), alt: 'Elegant portrait' },
     { id: 2, image: require('../img/shots/drink.jpg'), alt: 'Stylish fashion' },
     { id: 3, image: require('../img/shots/street.jpg'), alt: 'Minimalist interior' },
     { id: 4, image: require('../img/shots/peoplelanyard.jpg'), alt: 'Urban landscape' },
     { id: 5, image: require('../img/shots/consert.jpg'), alt: 'Abstract art' },
     { id: 6, image: require('../img/shots/consert.jpg'), alt: 'Nature close-up' },
-    { id: 7, image: require('../img/shots/consert.jpg'), alt: 'Portrait' },
-    { id: 8, image: require('../img/shots/consert.jpg'), alt: 'Landscape' },
-    { id: 9, image: require('../img/shots/consert.jpg'), alt: 'Street art' },
-    { id: 10, image: require('../img/shots/consert.jpg'), alt: 'Architecture' },
-    { id: 11, image: require('../img/shots/consert.jpg'), alt: 'Food photography' },
-    { id: 12, image: require('../img/shots/consert.jpg'), alt: 'Wildlife' },
   ];
 
-  const [visiblePhotos, setVisiblePhotos] = useState(allPhotos.slice(0, 6));
-  const [isLoading, setIsLoading] = useState(false);
-
-  const loadMorePhotos = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      const currentLength = visiblePhotos.length;
-      const nextPhotos = allPhotos.slice(currentLength, currentLength + 6);
-      setVisiblePhotos([...visiblePhotos, ...nextPhotos]);
-      setIsLoading(false);
-    }, 1000); // Simulating network delay
+  const handleViewMore = () => {
+    navigate('/shots');
   };
 
   useEffect(() => {
@@ -47,7 +34,7 @@ const Shots = () => {
     return () => {
       window.removeEventListener('resize', resizeGridItems);
     };
-  }, [visiblePhotos]);
+  }, []);
 
   return (
     <section className="shots">
@@ -59,25 +46,15 @@ const Shots = () => {
           </span>
           <span className="s">S</span>
         </h2>
-        <button className="view-more-btn">View More Shots</button>
+        <button className="view-more-btn" onClick={handleViewMore}>View More Shots</button>
       </div>
       <div className="photo-grid">
-        {visiblePhotos.map((photo, index) => (
+        {previewPhotos.map((photo, index) => (
           <div key={photo.id} className={`photo-item ${index % 6 < 3 ? 'top-row' : 'bottom-row'}`}>
             <img src={photo.image} alt={photo.alt} />
           </div>
         ))}
-              {visiblePhotos.length < allPhotos.length && (
-        <button 
-          className={`load-more-btn ${isLoading ? 'loading' : ''}`} 
-          onClick={loadMorePhotos}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Loading...' : 'Load More'}
-        </button>
-      )}
       </div>
-
     </section>
   );
 };
