@@ -58,13 +58,13 @@ const TalesComponent = () => {
       <div 
         className={`story-text-overlay ${isVisible ? 'visible' : ''}`}
         style={{
-          transform: `translate(-50%, calc(-50% - ${scrollPosition * 500}%))`,
+          transform: `translate(-50%, calc(-50% - ${scrollPosition * 200}%))`,
           transition: 'transform 0.1s ease-out'
         }}
       >
-        <span>S</span>
-        <img src={require('../img/hero/NODGE+.png')} alt="T" className="rotating-t" />
-        <span>ORY</span>
+        {/* <span>S</span> */}
+        <img src={require('../img/hero/story_LOGO.png')} alt="T" className="rotating-t" />
+        {/* <span>ORY</span> */}
       </div>
       <div 
         className="tales-left"

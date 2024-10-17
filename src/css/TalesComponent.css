@@ -31,15 +31,15 @@
 }
 
 .rotating-t {
-  width: 10rem;
-  height: 10rem;
-  animation: rotate360 10s linear infinite;
+  width: 25rem;
+  height: 25rem;
+  /* animation: rotate360 10s linear infinite; */
 }
 
-@keyframes rotate360 {
+/* @keyframes rotate360 {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */
 .tales-overlay {
   position: absolute;
   top: 0;

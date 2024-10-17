@@ -39,13 +39,9 @@ const Shots = () => {
   return (
     <section className="shots">
       <div className="shots-header">
-        <h2 className="shots-title">
-          <span className="sho">SHO</span>
-          <span className="rotating-t">
-            <img src={require('../img/hero/NODGE+.png')} alt="Rotating +" />
-          </span>
-          <span className="s">S</span>
-        </h2>
+        <div className="shots-title">
+          <img src={require('../img/hero/SHO+S_LOGO.png')} alt="SHOTS" className="shots-title-image" />
+        </div>
         <button className="view-more-btn" onClick={handleViewMore}>View More Shots</button>
       </div>
       <div className="photo-grid">

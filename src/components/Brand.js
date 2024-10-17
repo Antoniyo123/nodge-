@@ -13,7 +13,11 @@ const ExactLayout = () => {
     [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
   ];
 
-  const plusImage = require('../img/hero/NODGE+.png');
+  const titleImages = [
+    require('../img/hero/FOO+AGE_LOGO.png'),
+    require('../img/hero/tones_LOGO.png'),
+    require('../img/hero/FOO+AGE_LOGO.png'),
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,26 +31,18 @@ const ExactLayout = () => {
     navigate(`/${page}`);
   };
 
-  const renderColumn = (index, position, title, page) => (
-    <div 
+  const renderColumn = (index, position, page) => (
+    <div
       className={`column column-${position}`}
       onMouseEnter={() => setHoveredColumn(index)}
       onMouseLeave={() => setHoveredColumn(null)}
     >
-      <img src={images[currentImageIndex][index]} alt={title} />
-      <div className={`text-overlay ${position === 'left' ? 'top-left' : 'bottom-' + position}`}>
-        <h2>
-          {title.split('+').map((part, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && (
-                <span className="plus-icon">
-                  <img src={plusImage} alt="+" />
-                </span>
-              )}
-              {part}
-            </React.Fragment>
-          ))}
-        </h2>
+      <div className="image-container">
+        <img src={images[currentImageIndex][index]} alt={page} />
+        <div className="image-overlay"></div>
+      </div>
+      <div className={`content-overlay ${position === 'left' ? 'top-left' : 'bottom-' + position}`}>
+        <img src={titleImages[index]} alt={page} className="title-image" />
         {hoveredColumn === index && (
           <button className="view-more-btn" onClick={() => handleViewMore(page)}>View More</button>
         )}
@@ -56,9 +52,9 @@ const ExactLayout = () => {
 
   return (
     <div className="layout-container">
-      {renderColumn(0, 'left', 'foo+age', 'footage')}
-      {renderColumn(1, 'center', '+ones', 'tones')}
-      {renderColumn(2, 'right', 'fron+page', 'frontpage')}
+      {renderColumn(0, 'left', 'footage')}
+      {renderColumn(1, 'center', 'tones')}
+      {renderColumn(2, 'right', 'frontpage')}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import '../css/ArticleLayout.css';
 const ArticleLayout = () => {
   const events = [
     { id: 1, title: "Tech Conference 2024", date: "May 15-17, 2024", location: "Convention Center", time: "9:00 AM - 6:00 PM", image: require('../img/hero/music.jpg') },
-    { id: 2, title: "Art Exhibition: Monochrome", date: "June 1-30, 2024", location: "National Gallery", time: "10:00 AM - 8:00 PM", image: require('../img/hero/music.jpg') },
+    { id: 2, title: "Art Exhibition: Monochrome", date: "June 1-30, 2024", location: "National Gallery", time: "10:00 AM - 8:00 PM", image: require('../img/hero/photoshoot.jpg') },
     { id: 3, title: "Jazz Night", date: "July 10-12, 2024", location: "City Park", time: "7:00 PM - 11:00 PM", image: require('../img/hero/music.jpg') },
     { id: 4, title: "Design Symposium", date: "August 5-7, 2024", location: "Design Center", time: "11:00 AM - 5:00 PM", image: require('../img/hero/music.jpg') },
   ];
@@ -33,7 +33,7 @@ const ArticleLayout = () => {
       <header className="header">
         <div className="running-images">
           {[...Array(15)].map((_, index) => (
-            <img key={index} src={require('../img/hero/NODGE LOGO.png')} alt={`Logo ${index + 1}`} />
+            <img className='image-run' key={index} src={require('../img/hero/NODGE+.png')} alt={`Logo ${index + 1}`} />
           ))}
         </div>
         <h1 className="animate-on-scroll">Upcoming Events</h1>

@@ -134,13 +134,14 @@
   font-style: normal;
 }
 
-.text-content p {
+.text-content-home p {
   font-size: 0.9rem;
   max-width: 80%;
   font-family: "Arimo", sans-serif;
   font-optical-sizing: auto;
   /* font-weight: <weight>; */
   font-style: normal;
+  margin: 0 auto;
 }
 
 .right-section {

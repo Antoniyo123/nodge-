@@ -15,7 +15,36 @@
   transition: transform 0.3s ease; /* Efek zoom saat hover */
 }
 
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust the color and opacity as needed */
+}
+
+.content-overlay {
+  position: absolute;
+  z-index: 1; /* Ensure the content is above the image overlay */
+}
+
+.title-image {
+  max-width: 100%;
+  height: auto;
+}
 .column:hover img {
   transform: scale(1.05);
 }
@@ -28,7 +57,7 @@
 /* Footage */
 .top-left {
   top: 20px;
-  left: 7rem;
+  /* left: 7rem; */
 }
 /* Frontpage */
 .bottom-right {
@@ -36,8 +65,8 @@
 }
 /* Tones */
 .bottom-center {
-  bottom: 20rem;
-  left: 28%;
+  bottom: 16rem;
+  /* left: 28%; */
 }
 .bottom-right {
   right: 20px;
@@ -75,7 +104,7 @@
 } */
 
 .view-more-btn {
-  margin-top: 10px;
+  margin-top: -10rem;
   padding: 8px 16px;
   background-color: transparent;
   border: 2px solid white;

@@ -71,11 +71,11 @@
   
   .hamburger-icon-rotated {
     opacity: 0;
-    transform: rotate(-180deg);
+    transform: rotate(-360deg);
   }
   
   .hamburger:hover .hamburger-icon-wrapper {
-    transform: rotate(180deg);
+    transform: rotate(360deg);
 
   }
   
