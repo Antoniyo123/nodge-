@@ -44,7 +44,7 @@ const ExactLayout = () => {
       <div className={`content-overlay ${position === 'left' ? 'top-left' : 'bottom-' + position}`}>
         <img src={titleImages[index]} alt={page} className="title-image" />
         {hoveredColumn === index && (
-          <button className="view-more-btn" onClick={() => handleViewMore(page)}>View More</button>
+          <button className="view-more-btn-footage" onClick={() => handleViewMore(page)}>View More</button>
         )}
       </div>
     </div>

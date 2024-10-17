@@ -79,7 +79,7 @@ const TalesComponent = () => {
             Discover the beauty of our first tale, where moments of truth unfold.
           </p>
           {isLeftHovered && (
-            <button className="view-more-btn" onClick={() => handleViewMore('left')}>View More</button>
+            <button className="view-more-btn-story" onClick={() => handleViewMore('left')}>View More</button>
           )}
         </div>
       </div>
@@ -96,7 +96,7 @@ const TalesComponent = () => {
             Explore our collection of captivating stories that reveal divine truths through everyday moments.
           </p>
           {isRightHovered && (
-            <button className="view-more-btn" onClick={() => handleViewMore('right')}>View More</button>
+            <button className="view-more-btn-story" onClick={() => handleViewMore('right')}>View More</button>
           )}
         </div>
       </div>

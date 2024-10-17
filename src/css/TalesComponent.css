@@ -84,8 +84,8 @@
   font-style: normal;
 }
 
-.view-more-btn {
-  padding: 0.75rem 1.5rem;
+.view-more-btn-story {
+  padding: 20px 50px;
   background-color: transparent;
   color: #fff;
   border: 2px solid #fff;
@@ -94,7 +94,7 @@
   align-self: center;
 }
 
-.view-more-btn:hover {
+.view-more-btn-story:hover {
   background-color: #fff;
   color: #000;
 }

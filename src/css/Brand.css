@@ -103,8 +103,7 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 } */
 
-.view-more-btn {
-  margin-top: -10rem;
+.view-more-btn-footage {
   padding: 8px 16px;
   background-color: transparent;
   border: 2px solid white;
@@ -116,4 +115,6 @@
 .view-more-btn:hover {
   background-color: white;
   color: black;
+  margin-top: -12rem;
+
 }

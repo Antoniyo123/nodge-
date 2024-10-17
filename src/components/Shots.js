@@ -23,8 +23,8 @@ const Shots = () => {
       const items = grid.querySelectorAll('.photo-item');
       items.forEach(item => {
         const image = item.querySelector('img');
-        image.style.width = '100%';
-        image.style.height = 'auto';
+        image.style.width = 'auto';
+        image.style.height = '500px';
       });
     };
 
@@ -42,7 +42,7 @@ const Shots = () => {
         <div className="shots-title">
           <img src={require('../img/hero/SHO+S_LOGO.png')} alt="SHOTS" className="shots-title-image" />
         </div>
-        <button className="view-more-btn" onClick={handleViewMore}>View More Shots</button>
+        <button className="view-more-btn-shots" onClick={handleViewMore}>View More Shots</button>
       </div>
       <div className="photo-grid">
         {previewPhotos.map((photo, index) => (
