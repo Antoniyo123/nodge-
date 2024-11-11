@@ -4,6 +4,8 @@ import '../css/TalesComponent.css';
 
 const TalesComponent = () => {
   const componentRef = useRef(null);
+  const leftVideoRef = useRef(null);
+  const rightVideoRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
@@ -36,7 +38,7 @@ const TalesComponent = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Call once for initialization
+    handleScroll();
 
     return () => {
       if (componentRef.current) {
@@ -46,8 +48,31 @@ const TalesComponent = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Auto-play videos when they become visible
+    if (isVisible) {
+      if (leftVideoRef.current) leftVideoRef.current.play();
+      if (rightVideoRef.current) rightVideoRef.current.play();
+    }
+  }, [isVisible]);
+
   const handleViewMore = (section) => {
     navigate('/StoryPage', { state: { section } });
+  };
+
+  const handleMouseEnter = (videoRef, setHovered) => {
+    setHovered(true);
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = (videoRef, setHovered) => {
+    setHovered(false);
+    if (videoRef.current) {
+      // Optional: you can pause the video on mouse leave or let it continue playing
+      // videoRef.current.pause();
+    }
   };
 
   return (
@@ -62,17 +87,24 @@ const TalesComponent = () => {
           transition: 'transform 0.1s ease-out'
         }}
       >
-        {/* <span>S</span> */}
-        <img src={require('../img/hero/story_LOGO.png')} alt="T" className="rotating-t" />
-        {/* <span>ORY</span> */}
       </div>
       <div 
         className="tales-left"
-        onMouseEnter={() => setIsLeftHovered(true)}
-        onMouseLeave={() => setIsLeftHovered(false)}
+        onMouseEnter={() => handleMouseEnter(leftVideoRef, setIsLeftHovered)}
+        onMouseLeave={() => handleMouseLeave(leftVideoRef, setIsLeftHovered)}
       >
-        <img src={require('../img/hero/read-book.jpg')} alt="Left Section" className="tales-image" />
+        <video 
+          ref={leftVideoRef}
+          className="tales-video"
+          loop
+          muted
+          playsInline
+          src={require('../video/NODGE VIDEO 1.mp4')}
+        />
         <div className="tales-overlay">
+          <div className='footage-custom'>
+            <img src={require('../img/hero/FOO+AGE_LOGO.png')} className=''></img>
+          </div>
           <h2 className="tales-subtitle">LEFT SECTION</h2>
           <h1 className="tales-title">First Story</h1>
           <p className="tales-description">
@@ -85,11 +117,21 @@ const TalesComponent = () => {
       </div>
       <div 
         className="tales-right"
-        onMouseEnter={() => setIsRightHovered(true)}
-        onMouseLeave={() => setIsRightHovered(false)}
+        onMouseEnter={() => handleMouseEnter(rightVideoRef, setIsRightHovered)}
+        onMouseLeave={() => handleMouseLeave(rightVideoRef, setIsRightHovered)}
       >
-        <img src={require('../img/hero/photoshoot.jpg')} alt="Right Section" className="tales-image" />
+        <video 
+          ref={rightVideoRef}
+          className="tales-video"
+          loop
+          muted
+          playsInline
+          src={require('../video/NODGE VIDEO 2.mp4')}
+        />
         <div className="tales-overlay">
+          <div className='footage-custom'>
+            <img src={require('../img/hero/forntpage.png')} className=''></img>
+          </div>
           <h2 className="tales-subtitle">RIGHT SECTION</h2>
           <h1 className="tales-title">Second Story</h1>
           <p className="tales-description">

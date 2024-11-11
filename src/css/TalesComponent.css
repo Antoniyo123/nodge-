@@ -29,7 +29,14 @@
   pointer-events: none;
   transition: transform 0.7s ease-out;
 }
-
+.footage-custom{
+  /* display: flex; */
+  justify-content: flex-start;
+  margin-bottom: 7rem;
+}
+.footage-custom img{
+ width: 400px;
+}
 .rotating-t {
   width: 25rem;
   height: 25rem;
@@ -48,7 +55,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   padding: 2rem;

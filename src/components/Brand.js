@@ -8,15 +8,15 @@ const ExactLayout = () => {
   const navigate = useNavigate();
 
   const images = [
-    [require('../img/hero/article.jpg'), require('../img/hero/old.jpg'), require('../img/hero/article.jpg')],
-    [require('../img/hero/black-people.jpg'), require('../img/hero/music.jpg'), require('../img/hero/article.jpg')],
-    [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
+    [require('../img/brand/suster.JPG'), require('../img/hero/old.jpg'), require('../img/hero/article.jpg')],
+    // [require('../img/hero/black-people.jpg'), require('../img/hero/music.jpg'), require('../img/hero/article.jpg')],
+    // [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
   ];
 
   const titleImages = [
-    require('../img/hero/FOO+AGE_LOGO.png'),
+    require('../img/hero/story_LOGO.png'),
+    require('../img/hero/+ALES_LOGO.png'),
     require('../img/hero/tones_LOGO.png'),
-    require('../img/hero/FOO+AGE_LOGO.png'),
   ];
 
   useEffect(() => {
