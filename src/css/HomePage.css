@@ -90,11 +90,13 @@
 }
 
 .group-photo {
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   position: relative;
 }
 
-.group-photo img {
+.group-photo video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -145,7 +147,7 @@
 }
 
 .right-section {
-  flex: 1;
+  /* flex: 1; */
   position: relative;
 }
 
@@ -154,8 +156,13 @@
   position: relative;
   overflow: hidden;
 }
+.profile-photo{
+width: 100%;
 
-.profile-photo img {
+}
+.profile-photo video {
+  /* max-width: 700px; */
+
   width: 100%;
   height: 100%;
   object-fit: cover;
