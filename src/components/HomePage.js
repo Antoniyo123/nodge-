@@ -5,6 +5,8 @@ import '../css/HomePage.css';
 import '../css/Transition.css';
 import blackPeopleVideo from '../video/home-page/24 JUNI 2024.mov';
 import photoshootVideo from '../video/home-page/LOGO.mov';
+import microgram from '../video/microgram 2.mov';
+import Footage from '../img/hero/FOO+AGE_LOGO.png';
 // import articleVideo from '../video/hero/article.mp4';
 // import oldVideo from '../video/hero/old.mp4';
 
@@ -14,21 +16,14 @@ const HomePage = () => {
     {
       groupPhoto: blackPeopleVideo,
       profilePhoto: photoshootVideo,
-      title: 'IYAS LAWRENCE',
-      subtitle: '"MAKE IT"',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry...',
-      getToKnow: 'GET TO KNOW IYAS LAWRENCE',
-      link: '/article/iyas-lawrence'
+      titleImage: null, // Tidak menggunakan gambar untuk title di slide pertama
+      showTitleOnVideo: false // Flag untuk menunjukkan title tidak ditampilkan di atas video
     },
-    // {
-    //   groupPhoto: blackPeopleVideo,
-    //   profilePhoto: ,
-    //   title: 'NEW TITLE',
-    //   subtitle: '"NEW SUBTITLE"',
-    //   description: 'This is a new description for the second slide...',
-    //   getToKnow: 'DISCOVER MORE ABOUT NEW TITLE',
-    //   link: '/article/new-title'
-    // },
+    {
+      groupPhoto: microgram,
+      profilePhoto: microgram,
+      titleImage: Footage, // Menggunakan gambar untuk title
+    },
   ];
   
   const [isExiting, setIsExiting] = useState(false);
@@ -111,13 +106,13 @@ const HomePage = () => {
     setIsExiting(true);
     setTimeout(() => {
       navigate('/frontpage', { state: { article: slideData } });
-    }, 500); // Adjust this timing to match your transition duration
+    }, 500);
   };
 
   const currentSlideData = slides[currentSlide];
 
   return (
-    <CSSTransition
+<CSSTransition
       in={!isExiting}
       timeout={500}
       classNames="page"
@@ -140,6 +135,7 @@ const HomePage = () => {
                 type="video/mp4"
               />
               <div className="overlay-home"></div>
+              
             </div>
           </div>
           <div className="right-section">
@@ -152,6 +148,13 @@ const HomePage = () => {
                 playsInline
                 type="video/mp4"
               />
+              {currentSlideData.profilePhoto === microgram && (
+                <img 
+                  src={currentSlideData.titleImage} 
+                  className="title-image-bottom-left"
+                  alt="Title"
+                />
+              )}
               <div className="comb-overlay"></div>
             </div>
           </div>

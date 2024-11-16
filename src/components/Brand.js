@@ -3,14 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import '../css/Brand.css';
 
 const ExactLayout = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [hoveredColumn, setHoveredColumn] = useState(null);
   const navigate = useNavigate();
 
-  const images = [
-    [require('../img/brand/suster.JPG'), require('../img/hero/old.jpg'), require('../img/hero/article.jpg')],
-    // [require('../img/hero/black-people.jpg'), require('../img/hero/music.jpg'), require('../img/hero/article.jpg')],
-    // [require('../img/hero/old.jpg'), require('../img/hero/read-book.jpg'), require('../img/hero/article.jpg')],
+  // Media array dengan objek yang memiliki type (image/video) dan source
+  const mediaContent = [
+    [
+      {
+        type: 'image',
+        source: require('../img/brand/suster.JPG'),
+        thumbnail: require('../img/brand/photoshot.jpeg')
+      },
+      {
+        type: 'image',
+        source: require('../img/brand/photoshot.jpeg')
+      },
+      {
+        type: 'video',
+        source: require('../video/TONES1.mov'),
+        // thumbnail: require('../img/hero/article.jpg')
+      }
+    ]
   ];
 
   const titleImages = [
@@ -21,7 +35,7 @@ const ExactLayout = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentMediaIndex((prevIndex) => (prevIndex + 1) % mediaContent.length);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -31,6 +45,28 @@ const ExactLayout = () => {
     navigate(`/${page}`);
   };
 
+  const renderMedia = (media) => {
+    if (media.type === 'video') {
+      return (
+        <div className="video-container">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={media.thumbnail}
+            className="media-content"
+          >
+            <source src={media.source} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      );
+    } else {
+      return <img src={media.source} alt="" className="media-content" />;
+    }
+  };
+
   const renderColumn = (index, position, page) => (
     <div
       className={`column column-${position}`}
@@ -38,13 +74,15 @@ const ExactLayout = () => {
       onMouseLeave={() => setHoveredColumn(null)}
     >
       <div className="image-container">
-        <img src={images[currentImageIndex][index]} alt={page} />
+        {renderMedia(mediaContent[currentMediaIndex][index])}
         <div className="image-overlay"></div>
       </div>
       <div className={`content-overlay ${position === 'left' ? 'top-left' : 'bottom-' + position}`}>
         <img src={titleImages[index]} alt={page} className="title-image" />
         {hoveredColumn === index && (
-          <button className="view-more-btn-footage" onClick={() => handleViewMore(page)}>View More</button>
+          <button className="view-more-btn-footage" onClick={() => handleViewMore(page)}>
+            View More
+          </button>
         )}
       </div>
     </div>

@@ -71,7 +71,7 @@ const TalesComponent = () => {
     setHovered(false);
     if (videoRef.current) {
       // Optional: you can pause the video on mouse leave or let it continue playing
-      // videoRef.current.pause();
+      videoRef.current.pause();
     }
   };
 
@@ -99,7 +99,7 @@ const TalesComponent = () => {
           loop
           muted
           playsInline
-          src={require('../video/NODGE VIDEO 1.mp4')}
+          src={require('../video/NODGE VIDEO 2.mp4')}
         />
         <div className="tales-overlay">
           <div className='footage-custom'>
@@ -126,7 +126,7 @@ const TalesComponent = () => {
           loop
           muted
           playsInline
-          src={require('../video/NODGE VIDEO 2.mp4')}
+          src={require('../video/NODGE VIDEO 1.mp4')}
         />
         <div className="tales-overlay">
           <div className='footage-custom'>
