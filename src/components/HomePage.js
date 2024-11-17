@@ -7,8 +7,6 @@ import blackPeopleVideo from '../video/home-page/24 JUNI 2024.mov';
 import photoshootVideo from '../video/home-page/LOGO.mov';
 import microgram from '../video/microgram 2.mov';
 import Footage from '../img/hero/FOO+AGE_LOGO.png';
-// import articleVideo from '../video/hero/article.mp4';
-// import oldVideo from '../video/hero/old.mp4';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -16,13 +14,15 @@ const HomePage = () => {
     {
       groupPhoto: blackPeopleVideo,
       profilePhoto: photoshootVideo,
-      titleImage: null, // Tidak menggunakan gambar untuk title di slide pertama
-      showTitleOnVideo: false // Flag untuk menunjukkan title tidak ditampilkan di atas video
+      titleImage: null,
+      showTitleOnVideo: false,
+      isSingleVideo: false
     },
     {
       groupPhoto: microgram,
       profilePhoto: microgram,
-      titleImage: Footage, // Menggunakan gambar untuk title
+      titleImage: Footage,
+      isSingleVideo: true
     },
   ];
   
@@ -112,7 +112,7 @@ const HomePage = () => {
   const currentSlideData = slides[currentSlide];
 
   return (
-<CSSTransition
+    <CSSTransition
       in={!isExiting}
       timeout={500}
       classNames="page"
@@ -124,22 +124,9 @@ const HomePage = () => {
           onClick={handleBackgroundClick} 
           ref={homePageRef}
         >
-          <div className="left-section">
-            <div className="group-photo">
-              <video 
-                src={currentSlideData.profilePhoto} 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                type="video/mp4"
-              />
-              <div className="overlay-home"></div>
-              
-            </div>
-          </div>
-          <div className="right-section">
-            <div className="profile-photo">
+          {currentSlideData.isSingleVideo ? (
+            // Single video layout for microgram
+            <div className="full-width-video">
               <video 
                 src={currentSlideData.groupPhoto} 
                 autoPlay 
@@ -148,16 +135,44 @@ const HomePage = () => {
                 playsInline
                 type="video/mp4"
               />
-              {currentSlideData.profilePhoto === microgram && (
-                <img 
-                  src={currentSlideData.titleImage} 
-                  className="title-image-bottom-left"
-                  alt="Title"
-                />
-              )}
+              <img 
+                src={currentSlideData.titleImage} 
+                className="title-image-bottom-left"
+                alt="Title"
+              />
               <div className="comb-overlay"></div>
             </div>
-          </div>
+          ) : (
+            // Original split layout for other slides
+            <>
+              <div className="left-section">
+                <div className="group-photo">
+                  <video 
+                    src={currentSlideData.profilePhoto} 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    type="video/mp4"
+                  />
+                  <div className="overlay-home"></div>
+                </div>
+              </div>
+              <div className="right-section">
+                <div className="profile-photo">
+                  <video 
+                    src={currentSlideData.groupPhoto} 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    type="video/mp4"
+                  />
+                  <div className="comb-overlay"></div>
+                </div>
+              </div>
+            </>
+          )}
           {isHovering && (
             <div 
               className={`custom-cursor ${isHoveringClickable ? 'clickable' : ''}`}

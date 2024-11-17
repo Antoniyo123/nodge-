@@ -15,6 +15,12 @@
   height: 100%;
   object-fit: cover;
 }
+
+.tales-video{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 .story-text-overlay {
   position: absolute;
   top: 50%;
@@ -31,7 +37,7 @@
 }
 .footage-custom{
   /* display: flex; */
-  justify-content: flex-start;
+  justify-content: center;
   margin-bottom: 7rem;
 }
 .footage-custom img{
