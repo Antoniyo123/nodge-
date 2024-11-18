@@ -12,16 +12,16 @@ const ExactLayout = () => {
     [
       {
         type: 'image',
-        source: require('../img/brand/suster.JPG'),
-        thumbnail: require('../img/brand/photoshot.jpeg')
+        source: require('../img/brand/suster.jpg'),
+        // thumbnail: require('../img/brand/photoshot.jpeg')
       },
       {
         type: 'image',
-        source: require('../img/brand/photoshot.jpeg')
+        source: require('../img/brand/photoshot.jpg')
       },
       {
         type: 'video',
-        source: require('../video/TONES1.mov'),
+        source: require('../video/TONES1.mp4'),
         // thumbnail: require('../img/hero/article.jpg')
       }
     ]

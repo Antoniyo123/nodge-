@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import '../css/HomePage.css';
 import '../css/Transition.css';
-import blackPeopleVideo from '../video/home-page/24 JUNI 2024.mov';
+import blackPeopleVideo from '../video/home-page/24 JUNI 2024.mp4';
 import photoshootVideo from '../video/home-page/LOGO.mov';
 import microgram from '../video/microgram 2.mov';
 import Footage from '../img/hero/FOO+AGE_LOGO.png';

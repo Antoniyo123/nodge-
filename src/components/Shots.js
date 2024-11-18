@@ -12,7 +12,7 @@ const Shots = () => {
     { id: 5, image: require('../img/shots/foto5.jpg'), alt: 'Abstract art' },
     { id: 6, image: require('../img/shots/foto6.png'), alt: 'Nature close-up' },
     { id: 7, image: require('../img/shots/foto6.png'), alt: 'Nature close-up' },
-    { id: 8, image: require('../img/brand/suster.JPG'), alt: 'Nature close-up' },
+    { id: 8, image: require('../img/brand/suster.jpg'), alt: 'Nature close-up' },
   ];
 
   const handleViewMore = () => {
