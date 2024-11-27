@@ -5,11 +5,11 @@ import '../css/Navbar1.css';
 const categories = [
   { name: 'ABOUT US', path: '/' },
   { name: 'STORY', path: '/StoryPage' },
-  { name: 'FRONTPAGE', path: '/tales' },
-  { name: 'FOOTAGE', path: '/frontpage' },
-  { name: 'TONES', path: '/shots' },
+  { name: 'FRONTPAGE', path: '/frontpage' },
+  { name: 'FOOTAGE', path: '/footage' },
+  { name: 'TONES', path: '/tones' },
   { name: 'TALES', path: '/nodge' },
-  { name: 'SHOTS', path: '/nodge' },
+  { name: 'SHOTS', path: '/shots' },
 ];
 
 const NavBar = () => {

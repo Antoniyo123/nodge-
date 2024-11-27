@@ -1,79 +1,118 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import '../../css/Story/StoryPage.css'
+import React, { useState } from 'react';
+import '../../css/Story/StoryPage.css';
 
-const StoryPage = () => {
-  const location = useLocation();
-  const { section } = location.state || {};
+const articles = [
+  {
+    id: 1,
+    category: 'COLUMN',
+    date: '12.09.24',
+    headline: 'Sudah Pernah Berdesakan di Manggarai, Tuan?',
+    excerpt: 'Dalam submisi Open Column ini, Reva Bagja Andriano, mengeksposisikan keresahannya mengenaiwacana aturan baru yang...',
+    image: require('../../img/shots/street.jpg')
+  },
+  {
+    id: 2,
+    category: 'MUSIC',
+    date: '11.09.24',
+    headline: 'Artist on Artist: St. Vincent Interviewed By Indonesian Female Musicians',
+    excerpt: 'During our interview, excitement filled the air as Annie Clark\'s lush, soothing voice resonated...',
+    image: require('../../img/shots/street.jpg')
+  },
+  {
+    id: 3,
+    category: 'COLUMN',
+    date: '05.06.24',
+    headline: 'Mendengarkan Tutur Nusantara, Memetakan Masa Depan',
+    excerpt: 'Dalam submisi Open Column kali ini, Melati Suryodarmo, selaku Direktur Artistik Indonesia...',
+    image: require('../../img/shots/street.jpg')
+  },
+  {
+    id: 4,
+    category: 'COLUMN',
+    date: '12.09.24',
+    headline: 'Sudah Pernah Berdesakan di Manggarai, Tuan?',
+    excerpt: 'Dalam submisi Open Column ini, Reva Bagja Andriano, mengeksposisikan keresahannya mengenaiwacana aturan baru yang...',
+    image: require('../../img/shots/street.jpg')
+  },
+  {
+    id: 5,
+    category: 'MUSIC',
+    date: '11.09.24',
+    headline: 'Artist on Artist: St. Vincent Interviewed By Indonesian Female Musicians',
+    excerpt: 'During our interview, excitement filled the air as Annie Clark\'s lush, soothing voice resonated...',
+    image: require('../../img/shots/street.jpg')
+  },
+  {
+    id: 6,
+    category: 'COLUMN',
+    date: '05.06.24',
+    headline: 'Mendengarkan Tutur Nusantara, Memetakan Masa Depan',
+    excerpt: 'Dalam submisi Open Column kali ini, Melati Suryodarmo, selaku Direktur Artistik Indonesia...',
+    image: require('../../img/shots/street.jpg')
+  }
+];
 
-  const getContent = () => {
-    switch (section) {
-      case 'left':
-        return {
-          title: 'First Story',
-          subtitle: 'LEFT SECTION',
-          description: 'Discover the beauty of our first tale, where moments of truth unfold.',
-          image: require('../../img/hero/read-book.jpg'),
-          fullContent: `
-            Here is the full content of the First Story. This is where you would put the complete
-            narrative, expanding on the brief description provided in the TalesComponent.
-            You can add multiple paragraphs, images, or any other content relevant to this story.
+const categories = ['ALL', 'COLUMN', 'MUSIC', 'ART', 'CULTURE'];
 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+const ArticlePage = () => {
+  const [activeCategory, setActiveCategory] = useState('ALL');
 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-            officia deserunt mollit anim id est laborum.
-          `
-        };
-      case 'right':
-        return {
-          title: 'Second Story',
-          subtitle: 'RIGHT SECTION',
-          description: 'Explore our collection of captivating stories that reveal divine truths through everyday moments.',
-          image: require('../../img/hero/photoshoot.jpg'),
-          fullContent: `
-            Here is the full content of the Second Story. This section would contain the complete
-            narrative for the story introduced in the right section of the TalesComponent.
-            You can include detailed storytelling, character development, and thematic exploration here.
-
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-            officia deserunt mollit anim id est laborum.
-          `
-        };
-      default:
-        return {
-          title: 'Story Not Found',
-          subtitle: 'ERROR',
-          description: 'The requested story could not be found.',
-          image: null,
-          fullContent: 'We apologize, but the story you are looking for is not available.'
-        };
-    }
-  };
-
-  const content = getContent();
+  const filteredArticles = activeCategory === 'ALL' 
+    ? articles 
+    : articles.filter(article => article.category === activeCategory);
 
   return (
-    <div className="story-page">
-      <h1>{content.title}</h1>
-      <h2>{content.subtitle}</h2>
-      {content.image && <img src={content.image} alt={content.title} className="story-image" />}
-      <p>{content.description}</p>
-      <div className="full-content">
-        {content.fullContent.split('\n').map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+    <div className='story__container'>
+      <header className="page-header">
+        <h1 className="page-title">Our Stories</h1>
+        <p className="page-subtitle">Discover the latest stories, interviews, and insights</p>
+      </header>
+
+      <div className="category-tabs">
+        {categories.map((category) => (
+          <button
+            key={category}
+            className={`category-tab ${activeCategory === category ? 'active' : ''}`}
+            onClick={() => setActiveCategory(category)}
+          >
+            {category}
+          </button>
         ))}
+      </div>
+
+      <div className="articles-container">
+        <div className="articles-grid">
+          {filteredArticles.map((article) => (
+            <div key={article.id} className="article-card">
+              <div className="article-image-wrapper">
+                <img 
+                  src={article.image}
+                  alt={article.headline}
+                  className="article-image"
+                />
+                <div className="article-overlay" />
+                
+                <div className="article-content">
+                  <div className="article-meta">
+                    <span>{article.category}</span>
+                    <span>{article.date}</span>
+                  </div>
+                  <h2 className="article-headline">
+                    {article.headline}
+                  </h2>
+
+                </div>
+              </div>
+              <p className="article-excerpt">
+                    {article.excerpt}
+                  </p>
+                  <a href="#" className="read-more">Read More</a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default StoryPage;
+export default ArticlePage;

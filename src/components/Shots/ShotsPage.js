@@ -1,82 +1,244 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Download, ShoppingCart, ZoomIn } from 'lucide-react';
 import '../../css/Shots/ShotPage.css';
 
-const ShotsPage = () => {
-  const allPhotos = [
-    { id: 1, image: require('../../img/shots/consert.jpg'), alt: 'Elegant portrait' },
-    { id: 2, image: require('../../img/shots/drink.jpg'), alt: 'Stylish fashion' },
-    { id: 3, image: require('../../img/shots/street.jpg'), alt: 'Minimalist interior' },
-    { id: 4, image: require('../../img/shots/peoplelanyard.jpg'), alt: 'Urban landscape' },
-    { id: 5, image: require('../../img/shots/consert.jpg'), alt: 'Abstract art' },
-    { id: 6, image: require('../../img/shots/consert.jpg'), alt: 'Nature close-up' },
-    { id: 7, image: require('../../img/shots/consert.jpg'), alt: 'Portrait' },
-    { id: 8, image: require('../../img/shots/consert.jpg'), alt: 'Landscape' },
-    { id: 9, image: require('../../img/shots/consert.jpg'), alt: 'Street art' },
-    { id: 10, image: require('../../img/shots/consert.jpg'), alt: 'Architecture' },
-    { id: 11, image: require('../../img/shots/consert.jpg'), alt: 'Food photography' },
-    { id: 12, image: require('../../img/shots/consert.jpg'), alt: 'Wildlife' },
+const PhotoGallery = () => {
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedResolution, setSelectedResolution] = useState('');
+
+  const photos = [
+    {
+      id: 1,
+      title: "Demonstrasi indonesia peringatan darurat",
+      image: require('../../img/shots/foto2.png'),
+      description: "Historical moment captured during the health conference",
+      date: "1975-03-15",
+      photographer: "Andika Lensa",
+      prices: {
+        low: 25,
+        medium: 50,
+        high: 100
+      },
+      resolutions: {
+        low: "1200x800px",
+        medium: "2400x1600px",
+        high: "4800x3200px"
+      }
+    },
+    {
+      id: 2,
+      title: "First Pers Conference",
+      image: require('../../img/shots/foto3.png'),
+      description: "First press conference documentation",
+      date: "1975-04-20",
+      photographer: "Andika Lensa",
+      prices: {
+        low: 25,
+        medium: 50,
+        high: 100
+      },
+      resolutions: {
+        low: "1200x800px",
+        medium: "2400x1600px",
+        high: "4800x3200px"
+      }
+    },
+    {
+      id: 3,
+      title: "Demonstrasi indonesia peringatan darurat",
+      image: require('../../img/shots/foto2.png'),
+      description: "Historical moment captured during the health conference",
+      date: "1975-03-15",
+      photographer: "Andika Lensa",
+      prices: {
+        low: 25,
+        medium: 50,
+        high: 100
+      },
+      resolutions: {
+        low: "1200x800px",
+        medium: "2400x1600px",
+        high: "4800x3200px"
+      }
+    },
+    {
+      id: 4,
+      title: "First Pers Conference",
+      image: require('../../img/shots/foto3.png'),
+      description: "First press conference documentation",
+      date: "1975-04-20",
+      photographer: "Andika Lensa",
+      prices: {
+        low: 25,
+        medium: 50,
+        high: 100
+      },
+      resolutions: {
+        low: "1200x800px",
+        medium: "2400x1600px",
+        high: "4800x3200px"
+      }
+    },
+    {
+      id: 5,
+      title: "Demonstrasi indonesia peringatan darurat",
+      image: require('../../img/shots/foto2.png'),
+      description: "Historical moment captured during the health conference",
+      date: "1975-03-15",
+      photographer: "Andika Lensa",
+      prices: {
+        low: 25,
+        medium: 50,
+        high: 100
+      },
+      resolutions: {
+        low: "1200x800px",
+        medium: "2400x1600px",
+        high: "4800x3200px"
+      }
+    },
+    {
+      id: 6,
+      title: "First Pers Conference",
+      image: require('../../img/shots/foto3.png'),
+      description: "First press conference documentation",
+      date: "1975-04-20",
+      photographer: "Andika Lensa",
+      prices: {
+        low: 25,
+        medium: 50,
+        high: 100
+      },
+      resolutions: {
+        low: "1200x800px",
+        medium: "2400x1600px",
+        high: "4800x3200px"
+      }
+    }
   ];
 
-  const [visiblePhotos, setVisiblePhotos] = useState(allPhotos.slice(0, 6));
-  const [isLoading, setIsLoading] = useState(false);
-
-  const loadMorePhotos = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      const currentLength = visiblePhotos.length;
-      const nextPhotos = allPhotos.slice(currentLength, currentLength + 6);
-      setVisiblePhotos([...visiblePhotos, ...nextPhotos]);
-      setIsLoading(false);
-    }, 1000); // Simulating network delay
+  const handlePhotoClick = (photo) => {
+    setSelectedPhoto(photo);
   };
 
-  useEffect(() => {
-    const resizeGridItems = () => {
-      const grid = document.querySelector('.photo-grid');
-      const items = grid.querySelectorAll('.photo-item');
-      items.forEach(item => {
-        const image = item.querySelector('img');
-        image.style.width = '100%';
-        image.style.height = 'auto';
-      });
-    };
+  const handleDownload = () => {
+    if (selectedPhoto && selectedResolution) {
+      alert(`Downloading ${selectedPhoto.title} in ${selectedResolution} resolution`);
+      // Implement actual download logic here
+    }
+  };
 
-    resizeGridItems();
-    window.addEventListener('resize', resizeGridItems);
-
-    return () => {
-      window.removeEventListener('resize', resizeGridItems);
-    };
-  }, [visiblePhotos]);
+  const handlePurchase = () => {
+    if (selectedPhoto && selectedResolution) {
+      alert(`Purchasing ${selectedPhoto.title} in ${selectedResolution} resolution`);
+      // Implement actual purchase flow here
+    }
+  };
 
   return (
-    <div className="shots-page">
-      <h1 className="shots-page-title">
-        <span className="sho">SHO</span>
-        <span className="rotating-t">
-          <img src={require('../../img/hero/NODGE+.png')} alt="Rotating +" />
-        </span>
-        <span className="s">S</span>
-      </h1>
+    <div className="gallery-container">
+      <header className="gallery-header">
+        <h1>SHOTS</h1>
+        <p>Exploring our photojournalism collection</p>
+      </header>
+
       <div className="photo-grid">
-        {visiblePhotos.map((photo, index) => (
-          <div key={photo.id} className={`photo-item ${index % 6 < 3 ? 'top-row' : 'bottom-row'}`}>
-            <img src={photo.image} alt={photo.alt} />
+        {photos.map((photo) => (
+          <div key={photo.id} className="photo-card">
+            <div className="photo-image-container">
+              <img 
+                src={photo.image} 
+                alt={photo.title}
+                className="photo-image"
+              />
+              <div className="photo-overlay">
+                <button 
+                  className="zoom-button"
+                  onClick={() => handlePhotoClick(photo)}
+                >
+                  <ZoomIn />
+                </button>
+              </div>
+            </div>
+            <div className="photo-info">
+              <h3>{photo.title}</h3>
+              <p>{photo.date}</p>
+            </div>
           </div>
         ))}
       </div>
-      {visiblePhotos.length < allPhotos.length && (
-        <button 
-          className={`load-more-btn ${isLoading ? 'loading' : ''}`} 
-          onClick={loadMorePhotos}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Loading...' : 'Load More'}
-        </button>
+
+      {selectedPhoto && (
+        <div className="photo-modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>{selectedPhoto.title}</h2>
+              <button 
+                className="close-button"
+                onClick={() => setSelectedPhoto(null)}
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="modal-image-container">
+                <img 
+                  src={selectedPhoto.image} 
+                  alt={selectedPhoto.title}
+                  className="modal-image"
+                />
+                <div className="watermark">NODGE+ WATERMARK</div>
+              </div>
+
+              <div className="photo-details">
+                <div className="photo-metadata">
+                  <p><strong>Date:</strong> {selectedPhoto.date}</p>
+                  <p><strong>Photographer:</strong> {selectedPhoto.photographer}</p>
+                  <p>{selectedPhoto.description}</p>
+                </div>
+
+                <div className="purchase-options">
+                  <label>Select Resolution</label>
+                  <select 
+                    value={selectedResolution}
+                    onChange={(e) => setSelectedResolution(e.target.value)}
+                    className="resolution-select"
+                  >
+                    <option value="">Choose resolution</option>
+                    {Object.entries(selectedPhoto.resolutions).map(([key, value]) => (
+                      <option key={key} value={key}>
+                        {value} - ${selectedPhoto.prices[key]}
+                      </option>
+                    ))}
+                  </select>
+
+                  <div className="action-buttons">
+                    <button 
+                      className="download-button"
+                      onClick={handleDownload}
+                      disabled={!selectedResolution}
+                    >
+                      <Download />
+                      Download with Watermark
+                    </button>
+                    <button 
+                      className="purchase-button"
+                      onClick={handlePurchase}
+                      disabled={!selectedResolution}
+                    >
+                      <ShoppingCart />
+                      Purchase
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
 };
 
-export default ShotsPage;
+export default PhotoGallery;

@@ -1,101 +1,279 @@
-/* ShotsPage.css */
-.shots-page {
-    width: 100%;
-    /* max-width: 1200px; */
-    background-color: black;
-    margin: 0 auto;
-    padding: 2rem;
-    margin-top: -5rem;
-  }
-  
-  .shots-page-title {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  /* .sho, .s {
-    font-weight: bold;
-  } */
-  
-  /* .rotating-t {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    vertical-align: middle;
-  } */
-  
-  /* .rotating-t img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  } */
-  
-  .back-link {
-    display: inline-block;
-    margin-bottom: 2rem;
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .back-link:hover {
-    background-color: #0056b3;
+.gallery-container {
+width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-bottom: 120px;
+}
+
+.gallery-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.gallery-header h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #f9f5f5;
+}
+
+.gallery-header p {
+  color: #f9f5f5;
+  font-size: 30px;
+  margin-bottom: 1rem;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.photo-card {
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+}
+
+.photo-image-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.photo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.photo-image-container:hover .photo-overlay {
+  opacity: 1;
+}
+
+.photo-image-container:hover .photo-image {
+  transform: scale(1.05);
+}
+
+.zoom-button {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.zoom-button:hover {
+  background: #f0f0f0;
+}
+
+.photo-info {
+  padding: 1rem;
+}
+
+.photo-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.photo-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.photo-modal {
+  overflow-y: unset;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  inset: 0;
+  background: #000000e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(67, 169, 65, 0.372);
+  border-radius: 8px;
+  width: 90%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.modal-header h2{
+  color: white;
+}
+.close-button {
+
+  background: none;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.modal-body {
+  justify-items: center;
+  background-color: whitesmoke;
+  overflow: hidden;
+  height: 100%;
+width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.modal-image-container {
+  background-color: #090909;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+
+.watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: rgb(9, 8, 8);
+  opacity: 0.3;
+  transform: rotate(45deg);
+  pointer-events: none;
+  user-select: none;
+}
+.photo-details{
+  width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+}
+.photo-metadata {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+
+}
+.purchase-options {
+  display: flex
+  ;
+      flex-direction: row;
+      color: #060505;
+      gap: 1rem;
+      align-content: center;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: flex-start;
+}
+.photo-metadata p{
+  color: #090909;
+  display: flex
+;
+    color: #090909;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+.resolution-select {
+  width: 70%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.action-buttons button {
+  /* background: #666; */
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.download-button {
+  background: #2d2b2b;
+  color: #f7f4f4;
+}
+
+.purchase-button {
+  background: #0066cc;
+  color: white;
+}
+
+.download-button:hover {
+  background: #dc7b7b;
+}
+
+.purchase-button:hover {
+  background: #0052a3;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-body {
+    grid-template-columns: 1fr;
   }
   
   .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-  
-  .photo-item {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .photo-item img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-  }
-  
-  .photo-item:hover img {
-    transform: scale(1.05);
-  }
-  
-  .load-more-btn {
-    display: block;
-    margin: 6rem 16rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .load-more-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .load-more-btn.loading {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-  
-  @media (max-width: 768px) {
-    .photo-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .photo-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+}
